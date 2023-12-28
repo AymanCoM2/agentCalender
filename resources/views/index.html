@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Client Schedule</title>
+  </head>
+  <body>
+    <div class="m-4">
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">Client Code</th>
+            <th scope="col">Client Name</th>
+            <th scope="col" colspan="7">Month</th>
+          </tr>
+          <tr>
+            <th></th>
+            <th></th>
+            <!-- Repeat for the rest of the days -->
+            <th>Sat</th>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+          </tr>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Client Code 1</td>
+            <td>Client Name 1</td>
+            <!-- Repeat for the rest of the days -->
+            <td><div class="inner_cell" data-current-symbo="_">_</div></td>
+            <td><div class="inner_cell" data-current-symbo="_">_</div></td>
+            <td><div class="inner_cell" data-current-symbo="_">_</div></td>
+            <td><div class="inner_cell" data-current-symbo="_">_</div></td>
+            <td><div class="inner_cell" data-current-symbo="_">_</div></td>
+            <td><div class="inner_cell" data-current-symbo="_">_</div></td>
+            <td><div class="inner_cell" data-current-symbo="_">_</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/cellCheck.js"></script>
+  </body>
+</html>

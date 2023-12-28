@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/fill-calender', function () {
+    return view('fill-calender');
+})->name('fill-calender-get');
