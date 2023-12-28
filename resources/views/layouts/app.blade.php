@@ -10,6 +10,17 @@
     <title>App</title>
 </head>
 
+<style>
+    thead {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 3;
+        background: white;
+        border: 1px solid black;
+    }
+</style>
+
 <body>
     <div class="container m-4">
         @yield('content')

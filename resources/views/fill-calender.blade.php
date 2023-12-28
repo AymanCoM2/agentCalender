@@ -287,6 +287,423 @@
                                 <div class="inner_cell" data-current-symbo="_">_</div>
                             </td>
                         </tr>
+
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Client Code 1</td>
+                            <td>Client Name 1</td>
+                            <!-- Repeat for the rest of the days -->
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                            <td>
+                                <div class="inner_cell" data-current-symbo="_">_</div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

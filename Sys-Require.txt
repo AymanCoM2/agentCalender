@@ -1,0 +1,20 @@
+1- Exporting Data as Excel Files 
+
+2- Sheet Will Be Filled [One Time] At the Beggining Of the Month ! 
+    - No more and no Less [ Not Daily Or Weekly ]
+
+3- Localization Because they are stupid ,, Arabic and RTL layout For the lang  ; 
+
+4- Clicking On the Cell Will lead to the Change Of the State Of the Cell 
+
+5- Using Google Calender API ? 
+    - You Might Need it 
+
+6-How to Save the Data in the DB ? 
+    - And Also How to Retrieve it For the Admin + 
+
+7- Importing the Data For the DB From some kind Of Source ? 
+
+--------------------------------------------
+Changing the  Font For It and Make it Better 
+    - And you Will Also Need It For youe Daily Dose App 
