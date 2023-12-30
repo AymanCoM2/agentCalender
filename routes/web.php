@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Dummy;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 function establishConnectionDB($inputQuery)
@@ -92,3 +94,43 @@ Route::get('/fill-calender', function () {
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::post("/post-cell-data", function (Request $request) {
+    $symbol  = $request->symbol;
+    $date =  $request->dateOfTask;
+    $month =  $request->monthOfTask;
+    $cardCode =  $request->cardCode;
+    $repId  =  $request->repId;
+
+    // ^ How to Check // TODO
+    // ! Checking Whether There is a Record For this Cell OR Not ??
+    // Checking Data + CardCode + RepId 
+    // ???
+
+    $doesDummyExist = Dummy::where('cardCode', $cardCode)->where('date', $date)->where('repId', $repId)->first();
+    if ($doesDummyExist) {
+        $doesDummyExist->month = $month;
+        $doesDummyExist->date = $date;
+        $doesDummyExist->repId = $repId;
+        $doesDummyExist->state = $symbol;
+        $doesDummyExist->cardCode = $cardCode;
+        $doesDummyExist->save();
+        return response()->json(['key' => "Just-Updated"]);
+    } else {
+        $dumObject = new Dummy();
+        $dumObject->month = $month;
+        $dumObject->date = $date;
+        $dumObject->repId = $repId;
+        $dumObject->state = $symbol;
+        $dumObject->cardCode = $cardCode;
+        $dumObject->save();
+        return response()->json(['key' => "Newly-Created"]);
+    }
+})->name('post-cell-data');
+
+
+
+Route::get('/retreive-rep-calender', function () {
+    
+})->name('retreive-rep-calender');

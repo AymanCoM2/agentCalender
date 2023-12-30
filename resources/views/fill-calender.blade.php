@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 @extends('layouts.app')
 @php
     // In Case you Need to Add Something
