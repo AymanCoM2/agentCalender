@@ -86,6 +86,7 @@ Route::get('/fill-calender', function () {
     // dd($weeksArray);
     // Checking How Many Weeks We Have
     // Checking How Many Days 
+    // $matchingDummies  = Dummy::where('repId', '777')->where('month', '12')->get();
     return view('fill-calender', compact(['weeksArray', 'clientsDataArrray']));
 })->name('fill-calender-get');
 
@@ -132,5 +133,25 @@ Route::post("/post-cell-data", function (Request $request) {
 
 
 Route::get('/retreive-rep-calender', function () {
-    
+    // TODO : Supposed to be in URL two Inputs [ Month && REP id ]
+    // Get all Dummies For month 12  AND  For the Rep 777 
+    // and Then Check If Data is Matching 
+
+    $sampleSqlQuery  = "
+        SELECT T0.CardName , T0.CardCode
+        FROM 
+        LB.DBO.OCRD T0 LEFT JOIN OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        WHERE T0.GroupCode = '115'
+        ";
+    $statement  = establishConnectionDB($sampleSqlQuery);
+    $clientsDataArrray  = [];
+    while ($row = $statement->fetch(PDO::FETCH_OBJ)) {
+        $clientsDataArrray[] = $row;
+    }
+    $daysArray = getMonthDatesWithNames(12);
+    $weeksArray = cutMonthArrayIntoWeeks($daysArray);
+    // ! Data For this Rep In this Month 
+    $matchingDummies  = Dummy::where('repId', '777')->where('month', '12')->get();
+    // dd($matchingDummies);
+    return view('retreive-calender', compact(['weeksArray', 'clientsDataArrray', 'matchingDummies']));
 })->name('retreive-rep-calender');
