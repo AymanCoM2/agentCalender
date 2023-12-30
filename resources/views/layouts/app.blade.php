@@ -39,7 +39,30 @@
         //   N: "new",
         //   _: "_",
         // };
-
+        dayCells.forEach((eachCell) => {
+            let currentSymbol = eachCell.dataset.currentSymbo;
+            switch (currentSymbol) {
+                case "_":
+                case "X":
+                    eachCell.style.backgroundColor = "white";
+                    break;
+                case "O":
+                    eachCell.style.backgroundColor = "Orange";
+                    break;
+                case "F":
+                    eachCell.style.backgroundColor = "red";
+                    break;
+                case "P":
+                    eachCell.style.backgroundColor = "green";
+                    break;
+                case "N":
+                    eachCell.style.backgroundColor = "blue";
+                    break;
+                default:
+                    break;
+            }
+        });
+        
         dayCells.forEach((eachCell) => {
             let currentSymbol = eachCell.dataset.currentSymbo;
             let taskDate = eachCell.dataset.taskDate;

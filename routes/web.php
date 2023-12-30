@@ -86,8 +86,8 @@ Route::get('/fill-calender', function () {
     // dd($weeksArray);
     // Checking How Many Weeks We Have
     // Checking How Many Days 
-    // $matchingDummies  = Dummy::where('repId', '777')->where('month', '12')->get();
-    return view('fill-calender', compact(['weeksArray', 'clientsDataArrray']));
+    $matchingDummies  = Dummy::where('repId', '777')->where('month', '12')->get();
+    return view('fill-calender', compact(['weeksArray', 'clientsDataArrray', 'matchingDummies']));
 })->name('fill-calender-get');
 
 

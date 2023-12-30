@@ -54,10 +54,10 @@
                                                     }
                                                 }
                                             @endphp
-                                            <div class="inner_cell" data-current-symbo="{{ $flag ? $dummy->state : '-' }}"
+                                            <div class="inner_cell" data-current-symbo="{{ $flag ? $dummy->state : '_' }}"
                                                 data-task-date="{{ $eachDayDate }}" data-task-month="12"
                                                 data-card-code="{{ $eachClient->CardCode }}" data-rep-id="777">
-                                                {{ $flag ? $dummy->state : '-' }}
+                                                {{ $flag ? $dummy->state : '_' }}
                                             </div>
                                         </td>
                                     @endforeach

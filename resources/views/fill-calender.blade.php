@@ -52,9 +52,19 @@
                                     <!-- Repeat for the rest of the days -->
                                     @foreach ($daysOfWeekArray as $eachDayDate => $eachDateName)
                                         <td>
-                                            <div class="inner_cell" data-current-symbo="_"
+                                            @php
+                                                $flag = false;
+                                                foreach ($matchingDummies as $dummy) {
+                                                    if ($dummy->date == $eachDayDate && $dummy->cardCode == $eachClient->CardCode) {
+                                                        $flag = true;
+                                                        break;
+                                                    }
+                                                }
+                                            @endphp
+                                            <div class="inner_cell" data-current-symbo="{{ $flag ? $dummy->state : '_' }}"
                                                 data-task-date="{{ $eachDayDate }}" data-task-month="12"
-                                                data-card-code="{{ $eachClient->CardCode }}" data-rep-id="777">_</div>
+                                                data-card-code="{{ $eachClient->CardCode }}" data-rep-id="777">
+                                                {{ $flag ? $dummy->state : '_' }}</div>
                                         </td>
                                     @endforeach
                                 </tr>
