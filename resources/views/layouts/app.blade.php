@@ -62,7 +62,7 @@
                     break;
             }
         });
-        
+
         dayCells.forEach((eachCell) => {
             let currentSymbol = eachCell.dataset.currentSymbo;
             let taskDate = eachCell.dataset.taskDate;
