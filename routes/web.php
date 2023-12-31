@@ -4,6 +4,12 @@ use App\Models\Dummy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+Route::group(['middleware' => []], __DIR__ . '/AuthRoutes.php');
+Route::group(['middleware' => []], __DIR__ . '/AdminRoutes.php');
+Route::group(['middleware' => []], __DIR__ . '/RepRoutes.php');
+// Route::group(['middleware' => []], __DIR__ . '/utility.php');
+// Route::group([], __DIR__ . '/utility.php');
+// Route::group(['middleware' => ['auth']], __DIR__ . '/utility.php');
 function establishConnectionDB($inputQuery)
 {
     $serverName = "jou.is-by.us";
@@ -20,7 +26,6 @@ function establishConnectionDB($inputQuery)
     $conn = null;
     return $stmt;
 }
-
 
 function getMonthDatesWithNames($monthNumber)
 {
@@ -80,7 +85,7 @@ Route::get('/fill-calender', function () {
         $clientsDataArrray[] = $row;
     }
     // Making Connection For Customers
-    $daysArray = getMonthDatesWithNames(12); // ! 1 
+    $daysArray = getMonthDatesWithNames(2); // ! 1 
     // dd($clientsDataArrray);
     $weeksArray = cutMonthArrayIntoWeeks($daysArray);
     // dd($weeksArray);
@@ -91,10 +96,9 @@ Route::get('/fill-calender', function () {
 })->name('fill-calender-get');
 
 
-
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 
 Route::post("/post-cell-data", function (Request $request) {
@@ -103,7 +107,6 @@ Route::post("/post-cell-data", function (Request $request) {
     $month =  $request->monthOfTask;
     $cardCode =  $request->cardCode;
     $repId  =  $request->repId;
-
     // ^ How to Check // TODO
     // ! Checking Whether There is a Record For this Cell OR Not ??
     // Checking Data + CardCode + RepId 
@@ -131,7 +134,6 @@ Route::post("/post-cell-data", function (Request $request) {
 })->name('post-cell-data');
 
 
-
 Route::get('/retreive-rep-calender', function () {
     // TODO : Supposed to be in URL two Inputs [ Month && REP id ]
     // Get all Dummies For month 12  AND  For the Rep 777 
@@ -148,7 +150,7 @@ Route::get('/retreive-rep-calender', function () {
     while ($row = $statement->fetch(PDO::FETCH_OBJ)) {
         $clientsDataArrray[] = $row;
     }
-    $daysArray = getMonthDatesWithNames(12);
+    $daysArray = getMonthDatesWithNames(2);
     $weeksArray = cutMonthArrayIntoWeeks($daysArray);
     // ! Data For this Rep In this Month 
     $matchingDummies  = Dummy::where('repId', '777')->where('month', '12')->get();
