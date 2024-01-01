@@ -145,7 +145,7 @@ Route::get('/record-one-day', function () {
     }
     $dailyProgressRecord  = DailyProgress::where('user_id', Auth::user()->id)->where('date', $todaysDate)->get();
     return view('one-day-calender', compact(['clientsDataArrray', 'dailyProgressRecord', 'todaysDate', 'currentMonthNumber']));
-})->name('record-one-d-get');
+})->name('record-one-d-get'); // !@DONE 
 
 Route::post('/record-one-day', function (Request $request) {
     $currentMonthNumber =  date('m');
@@ -177,6 +177,6 @@ Route::post('/record-one-day', function (Request $request) {
         $newDailyObject->save();
         return response()->json(['key' => "Newly-Created"]);
     }
-})->name('record-one-d-post');
+})->name('record-one-d-post'); // !@DONE 
 
 //*===========================================================>>
