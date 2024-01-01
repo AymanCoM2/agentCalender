@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Models\MonthPlan;
 use Illuminate\Http\Request;
 
-
 function establishConnectionDB_web($inputQuery)
 {
     $serverName = "jou.is-by.us";
