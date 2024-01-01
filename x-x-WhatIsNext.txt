@@ -1,16 +1,5 @@
-[ Can Delay ]
-1- Whole Month View In HTML view 
-2- Adding New Client By the Rep 
-3- Export Data Into Excel Files 
-===================================
-[ UI Things ]
-1- Row Border 
-2- Pagination
-3- Color For cells && Padding and Fonts 
-4- Row Highlight 
-===================================
 [ Final Steps ]
-1- Middleware 
+1- Middleware
     - "Authenticated" Middleware , Must Sign In Or Only He will Go to Login First 
     - Approval Middleware [If approved , He Can't access ]
     - Admin Middleware
@@ -22,4 +11,19 @@
 ===================================
 Other Needs : 
     - Searching Users / Clients ? 
-    - 
+===================================
+[ Can Delay ]
+1- Whole Month View In HTML view 
+2- Adding New Client By the Rep 
+3- Export Data Into Excel Files 
+===================================
+Viewing The Whole Record For A Rep From the Admin Page ? 
+===================================
+[ UI Things ]
+1- Row Border 
+2- Pagination
+3- Color For cells && Padding and Fonts 
+4- Row Highlight
+===================================
+Custom Command TO Create Admin && super Admin accounts 
+===================================

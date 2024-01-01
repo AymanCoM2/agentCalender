@@ -51,14 +51,18 @@
                         <h1 class="text-center head">Admin</h1>
                     </div>
                     <div class="form-item">
-                        <a href="{{ route('fill-calender-get') }}"
-                            class="form-style btn btn-primary rounded-pill px-3 w-100">Fill Current
-                            Month Plan</a>
+                        <a href="{{ route('list-all-users') }}"
+                            class="form-style btn btn-primary rounded-pill px-3 w-100">List all Users</a>
                     </div>
+
                     <div class="form-item">
-                        <a href="{{ route('record-one-d-get') }}"
-                            class="form-style btn btn-warning rounded-pill px-3 w-100">Fill Today
-                            Progress</a>
+                        <a href="{{ route('create-user-get') }}"
+                            class="form-style btn btn-primary rounded-pill px-3 w-100">Create New User</a>
+                    </div>
+
+                    <div class="form-item">
+                        <a href="{{ route('import-reps-get') }}"
+                            class="form-style btn btn-primary rounded-pill px-3 w-100">Import Excel File</a>
                     </div>
                 </div>
             </div>
