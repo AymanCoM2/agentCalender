@@ -12,9 +12,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string("userCode");
+            $table->string("areaCode");
             $table->string('userType')->default('rep'); // rep VS admin
-            // $table->string('email')->unique()->nullable();
-            // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('pass_as_string');
             $table->rememberToken();

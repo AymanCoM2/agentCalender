@@ -1,8 +1,12 @@
 <?php
 
 use App\Models\Dummy;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Rap2hpoutre\FastExcel\FastExcel;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 Route::group(['middleware' => []], __DIR__ . '/AuthRoutes.php');
 Route::group(['middleware' => []], __DIR__ . '/AdminRoutes.php');
@@ -157,3 +161,24 @@ Route::get('/retreive-rep-calender', function () {
     // dd($matchingDummies);
     return view('retreive-calender', compact(['weeksArray', 'clientsDataArrray', 'matchingDummies']));
 })->name('retreive-rep-calender');
+// *=======================================================>>
+
+Route::get('/import-reps', function (Request $request) {
+    return view('import-reps');
+})->name('import-reps-get');
+
+Route::post('/import-reps', function (Request $request) {
+    $collections = (new FastExcel)->import($request->excelFile);
+    User::truncate();
+    foreach ($collections as $collection) {
+        $nu = new User();
+        $nu->name  = $collection['Name'];
+        $nu->userCode  = $collection['Email'];
+        $nu->areaCode  = $collection['Code'];
+        $nu->password  = Hash::make('123');
+        $nu->pass_as_string  = '123';
+        $nu->save();
+    }
+    session()->flash('message', 'File successfully Uploaded.');
+    return back();
+})->name('import-reps-post');
