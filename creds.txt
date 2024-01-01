@@ -1,0 +1,5 @@
+ssh adminuser@jou.mine.nu
+password
+@2CooM443351@adminusr
+http://jou.is-by.us/
+========================
