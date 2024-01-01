@@ -2,14 +2,9 @@
 
 use App\Models\DailyProgress;
 use App\Models\MonthPlan;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Rap2hpoutre\FastExcel\FastExcel;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Schema;
 
 function establishConnectionDB($inputQuery)
 {
@@ -178,5 +173,3 @@ Route::post('/record-one-day', function (Request $request) {
         return response()->json(['key' => "Newly-Created"]);
     }
 })->name('record-one-d-post'); // !@DONE 
-
-//*===========================================================>>
