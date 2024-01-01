@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\DailyProgress;
 use App\Models\MonthPlan;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -125,14 +126,57 @@ Route::post("/post-cell-data", function (Request $request) {
     }
 })->name('post-cell-data'); // !@DONE 
 
-//*===========================================================>>
-
 Route::get('/record-one-day', function () {
-    return view('one-day-calender');
+    $currentMonthNumber =  date('m');
+    $todaysDate  = date('Y-m-d');
+    // $todaysDate  = "2024-01-02";
+    $currentYear  = date('Y');
+    $userAreaCode  = Auth::user()->areaCode;
+    $sampleSqlQuery  = "
+        SELECT T1.GroupName,T0.CardName , T0.CardCode
+        FROM
+        OCRD T0 LEFT JOIN OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        WHERE T1.GroupName = '" . $userAreaCode . "'
+        ";
+    $statement  = establishConnectionDB($sampleSqlQuery);
+    $clientsDataArrray  = [];
+    while ($row = $statement->fetch(PDO::FETCH_OBJ)) {
+        $clientsDataArrray[] = $row;
+    }
+    $dailyProgressRecord  = DailyProgress::where('user_id', Auth::user()->id)->where('date', $todaysDate)->get();
+    return view('one-day-calender', compact(['clientsDataArrray', 'dailyProgressRecord', 'todaysDate', 'currentMonthNumber']));
 })->name('record-one-d-get');
 
-
-
-Route::post('/record-one-day', function () {
-    // ! PASS 
+Route::post('/record-one-day', function (Request $request) {
+    $currentMonthNumber =  date('m');
+    $todaysDate  = date('Y-m-d');
+    $currentYear  = date('Y');
+    $symbol  = $request->symbol;
+    $date =  $todaysDate;
+    $month =  $currentMonthNumber;
+    $cardCode =  $request->cardCode;
+    $repId  =  $request->repId;
+    $doesDailyExist = DailyProgress::where('cardCode', $cardCode)->where('date', $date)->where('user_id', Auth::user()->id)->first();
+    if ($doesDailyExist) {
+        $doesDailyExist->month = $month;
+        $doesDailyExist->year =  date('Y');
+        $doesDailyExist->date = $date;
+        $doesDailyExist->user_id = Auth::user()->id;
+        $doesDailyExist->state = $symbol;
+        $doesDailyExist->cardCode = $cardCode;
+        $doesDailyExist->save();
+        return response()->json(['key' => "Just-Updated"]);
+    } else {
+        $newDailyObject = new DailyProgress();
+        $newDailyObject->month = $month;
+        $newDailyObject->year =  date('Y');
+        $newDailyObject->date = $date;
+        $newDailyObject->user_id = Auth::user()->id;
+        $newDailyObject->state = $symbol;
+        $newDailyObject->cardCode = $cardCode;
+        $newDailyObject->save();
+        return response()->json(['key' => "Newly-Created"]);
+    }
 })->name('record-one-d-post');
+
+//*===========================================================>>

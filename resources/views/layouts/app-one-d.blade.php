@@ -32,9 +32,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li> --}}
                     @guest
                         Guest
                     @endguest
@@ -66,14 +63,7 @@
     <script src="{{ asset('js/toastify-js.js') }}"></script>
     <script>
         let dayCells = document.querySelectorAll(".inner_cell");
-        // let symbolObject = {
-        //   X: "target",
-        //   O: "onrandom",
-        //   F: "failed",
-        //   P: "planned",
-        //   N: "new",
-        //   _: "_",
-        // };
+
         dayCells.forEach((eachCell) => {
             let currentSymbol = eachCell.dataset.currentSymbo;
             switch (currentSymbol) {
@@ -120,7 +110,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('post-cell-data') }}",
+                    url: "{{ route('record-one-d-post') }}",
                     data: {
                         symbol: _symbolState,
                         dateOfTask: _taskDate,
