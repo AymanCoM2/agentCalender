@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dummy extends Model
+class MonthPlan extends Model
 {
     use HasFactory;
     protected $fillable  = [
         'month',
         'date',
-        'repId',
+        'year' , 
+        'user_id',
         'state',
         'cardCode',
     ];

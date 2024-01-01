@@ -26,7 +26,21 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
-        // 'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function monthplan()
+    {
+        return $this->hasMany(MonthPlan::class, 'user_id');
+    }
+
+    public function dailyprogress()
+    {
+        return $this->hasMany(DailyProgress::class, 'user_id');
+    }
+
+    public function monthapproval()
+    {
+        return $this->hasMany(MonthApproval::class, 'user_id');
+    }
 }
