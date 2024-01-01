@@ -22,7 +22,6 @@ function establishConnectionDB_web($inputQuery)
     $conn = null;
     return $stmt;
 }
-
 function getMonthDatesWithNames_web($monthNumber)
 {
     // This Function Gets The Month Number [ 12 For December ]
@@ -41,7 +40,6 @@ function getMonthDatesWithNames_web($monthNumber)
     }
     return $monthDatesWithNames;
 }
-
 function cutMonthArrayIntoWeeks_web($monthArray)
 {
     // This function takes the month array and Split it Into Weeks 
@@ -66,6 +64,10 @@ function cutMonthArrayIntoWeeks_web($monthArray)
 
     return $weeks;
 }
+
+Route::get('/admin-home', function () {
+    return view('admin-home');
+})->name('admin-home');
 
 Route::get('list-all-users', function () {
     $allReps  = User::where('userType', 'rep')->get();

@@ -11,5 +11,6 @@
     <a href="{{ route('create-user-get') }}" class="btn btn-success m-2">Create New user</a>
     <a href="{{ route('reset-user-get', 1) }}" class="btn btn-success m-2">Reset User Pasword</a>
     <a href="{{ route('retreive-rep-calender' , 1) }}" class="btn btn-success m-2">Retreive Calender Weekly</a>
+    <a href="{{ route('admin-home') }}" class="btn btn-success m-2">Admin Home Page </a>
     <hr><br>
 @endsection
