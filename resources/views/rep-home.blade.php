@@ -51,11 +51,13 @@
                         <h1 class="text-center head">Welcome</h1>
                     </div>
                     <div class="form-item">
-                        <a href="" class="form-style btn btn-primary rounded-pill px-3 w-100">Fill Current
+                        <a href="{{ route('fill-calender-get') }}"
+                            class="form-style btn btn-primary rounded-pill px-3 w-100">Fill Current
                             Month Plan</a>
                     </div>
                     <div class="form-item">
-                        <a href="" class="form-style btn btn-warning rounded-pill px-3 w-100">Fill Today
+                        <a href="{{ route('record-one-d-get') }}"
+                            class="form-style btn btn-warning rounded-pill px-3 w-100">Fill Today
                             Progress</a>
                     </div>
                 </div>

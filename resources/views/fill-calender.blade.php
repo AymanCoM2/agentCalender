@@ -47,17 +47,18 @@
                                     <td>
                                         @php
                                             $flag = false;
-                                            foreach ($matchingDummies as $dummy) {
-                                                if ($dummy->date == $eachDayDate && $dummy->cardCode == $eachClient->CardCode) {
+                                            foreach ($matchingMonthPlan as $dummyMatchPlan) {
+                                                if ($dummyMatchPlan->date == $eachDayDate && $dummyMatchPlan->cardCode == $eachClient->CardCode) {
                                                     $flag = true;
                                                     break;
                                                 }
                                             }
                                         @endphp
-                                        <div class="inner_cell" data-current-symbo="{{ $flag ? $dummy->state : '_' }}"
+                                        <div class="inner_cell"
+                                            data-current-symbo="{{ $flag ? $dummyMatchPlan->state : '_' }}"
                                             data-task-date="{{ $eachDayDate }}" data-task-month="12"
                                             data-card-code="{{ $eachClient->CardCode }}" data-rep-id="777">
-                                            {{ $flag ? $dummy->state : '_' }}</div>
+                                            {{ $flag ? $dummyMatchPlan->state : '_' }}</div>
                                     </td>
                                 @endforeach
                             </tr>

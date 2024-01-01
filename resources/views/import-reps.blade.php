@@ -11,6 +11,38 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ route('home') }}">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    @guest
+                        Guest
+                    @endguest
+                    @auth
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li>
+                                    <form action="{{ route('logout') }}" method="post" id="littleForm">@csrf
+                                        <a class="dropdown-item" href="#" id="loggingOut">Log Out</a>
+                                    </form>
+                                </li>
+                                <li><a class="dropdown-item" href="#">30 Month View</a></li>
+                            </ul>
+                        </li>
+                    @endauth
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container">
         @if (session()->has('message'))
             <div class="alert alert-success">

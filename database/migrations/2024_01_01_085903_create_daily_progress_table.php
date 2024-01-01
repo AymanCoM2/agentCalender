@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('year')->nullable();
             $table->string('date')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('state')->nullable(); // O , X , F , P ...etc 
             $table->string('cardCode')->nullable(); // Of the Customer
             $table->timestamps();

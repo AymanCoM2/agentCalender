@@ -7,14 +7,24 @@ use Illuminate\Support\Facades\Route;
 use Rap2hpoutre\FastExcel\FastExcel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 
+Route::group(['middleware' => []], __DIR__ . '/ImportingRoutes.php'); // * DONE 
+Route::group(['middleware' => []], __DIR__ . '/RepRoutes.php');
 Route::group(['middleware' => []], __DIR__ . '/AuthRoutes.php');
 Route::group(['middleware' => []], __DIR__ . '/AdminRoutes.php');
-Route::group(['middleware' => []], __DIR__ . '/RepRoutes.php');
-// Route::group(['middleware' => []], __DIR__ . '/utility.php');
-// Route::group([], __DIR__ . '/utility.php');
+
 // Route::group(['middleware' => ['auth']], __DIR__ . '/utility.php');
-function establishConnectionDB($inputQuery)
+
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
+// *=======================================================>>
+
+
+function establishConnectionDB_web($inputQuery)
 {
     $serverName = "jou.is-by.us";
     $databaseName = "LB";
@@ -31,7 +41,7 @@ function establishConnectionDB($inputQuery)
     return $stmt;
 }
 
-function getMonthDatesWithNames($monthNumber)
+function getMonthDatesWithNames_web($monthNumber)
 {
     // This Function Gets The Month Number [ 12 For December ]
     // And Then Return Associative array [ Key is the Date & Value is the Name "ie : sat"]
@@ -50,7 +60,7 @@ function getMonthDatesWithNames($monthNumber)
     return $monthDatesWithNames;
 }
 
-function cutMonthArrayIntoWeeks($monthArray)
+function cutMonthArrayIntoWeeks_web($monthArray)
 {
     // This function takes the month array and Split it Into Weeks 
     $weeks = [
@@ -75,67 +85,6 @@ function cutMonthArrayIntoWeeks($monthArray)
     return $weeks;
 }
 
-
-Route::get('/fill-calender', function () {
-    $sampleSqlQuery  = "
-        SELECT T0.CardName , T0.CardCode
-        FROM 
-        LB.DBO.OCRD T0 LEFT JOIN OCRG T1 ON T0.GroupCode  = T1.GroupCode
-        WHERE T0.GroupCode = '115'
-        ";
-    $statement  = establishConnectionDB($sampleSqlQuery);
-    $clientsDataArrray  = [];
-    while ($row = $statement->fetch(PDO::FETCH_OBJ)) {
-        $clientsDataArrray[] = $row;
-    }
-    // Making Connection For Customers
-    $daysArray = getMonthDatesWithNames(2); // ! 1 
-    // dd($clientsDataArrray);
-    $weeksArray = cutMonthArrayIntoWeeks($daysArray);
-    // dd($weeksArray);
-    // Checking How Many Weeks We Have
-    // Checking How Many Days 
-    $matchingDummies  = Dummy::where('repId', '777')->where('month', '12')->get();
-    return view('fill-calender', compact(['weeksArray', 'clientsDataArrray', 'matchingDummies']));
-})->name('fill-calender-get');
-
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-
-
-Route::post("/post-cell-data", function (Request $request) {
-    $symbol  = $request->symbol;
-    $date =  $request->dateOfTask;
-    $month =  $request->monthOfTask;
-    $cardCode =  $request->cardCode;
-    $repId  =  $request->repId;
-    // ^ How to Check // TODO
-    // ! Checking Whether There is a Record For this Cell OR Not ??
-    // Checking Data + CardCode + RepId 
-    // ???
-
-    $doesDummyExist = Dummy::where('cardCode', $cardCode)->where('date', $date)->where('repId', $repId)->first();
-    if ($doesDummyExist) {
-        $doesDummyExist->month = $month;
-        $doesDummyExist->date = $date;
-        $doesDummyExist->repId = $repId;
-        $doesDummyExist->state = $symbol;
-        $doesDummyExist->cardCode = $cardCode;
-        $doesDummyExist->save();
-        return response()->json(['key' => "Just-Updated"]);
-    } else {
-        $dumObject = new Dummy();
-        $dumObject->month = $month;
-        $dumObject->date = $date;
-        $dumObject->repId = $repId;
-        $dumObject->state = $symbol;
-        $dumObject->cardCode = $cardCode;
-        $dumObject->save();
-        return response()->json(['key' => "Newly-Created"]);
-    }
-})->name('post-cell-data');
 
 
 Route::get('/retreive-rep-calender', function () {
@@ -162,23 +111,3 @@ Route::get('/retreive-rep-calender', function () {
     return view('retreive-calender', compact(['weeksArray', 'clientsDataArrray', 'matchingDummies']));
 })->name('retreive-rep-calender');
 // *=======================================================>>
-
-Route::get('/import-reps', function (Request $request) {
-    return view('import-reps');
-})->name('import-reps-get');
-
-Route::post('/import-reps', function (Request $request) {
-    $collections = (new FastExcel)->import($request->excelFile);
-    User::truncate();
-    foreach ($collections as $collection) {
-        $nu = new User();
-        $nu->name  = $collection['Name'];
-        $nu->userCode  = $collection['Email'];
-        $nu->areaCode  = $collection['Code'];
-        $nu->password  = Hash::make('123');
-        $nu->pass_as_string  = '123';
-        $nu->save();
-    }
-    session()->flash('message', 'File successfully Uploaded.');
-    return back();
-})->name('import-reps-post');

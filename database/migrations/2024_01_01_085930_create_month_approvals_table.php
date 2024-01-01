@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('year')->nullable();
             $table->boolean('isApproved')->nullable();
             $table->unsignedBigInteger('user_id'); // For the RepId Who His Plan is approved
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
