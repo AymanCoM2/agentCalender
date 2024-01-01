@@ -65,7 +65,6 @@ function cutMonthArrayIntoWeeks($monthArray)
     }
     return $weeks;
 }
-//^===========================================================>>
 
 Route::get('rep-home', function () {
     return view('rep-home');
@@ -89,7 +88,7 @@ Route::get('/fill-calender', function () {
     $weeksArray = cutMonthArrayIntoWeeks($daysArray);
     $matchingMonthPlan  = MonthPlan::where('user_id', Auth::user()->id)->where('month', $currentMonthNumber)->get();
     return view('fill-calender', compact(['weeksArray', 'clientsDataArrray', 'matchingMonthPlan']));
-})->name('fill-calender-get'); // !@DONE 
+})->name('fill-calender-get')->middleware('alreadyApproved'); // !@DONE 
 
 Route::post("/post-cell-data", function (Request $request) {
     $currentMonthNumber =  date('m');
