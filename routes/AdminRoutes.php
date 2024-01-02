@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\MonthApproval;
 use Illuminate\Support\Facades\Route;
 use App\Models\MonthPlan;
 use Illuminate\Http\Request;
@@ -94,7 +95,7 @@ Route::get('/retreive-rep-calender/{rep_id}', function (Request $request) {
     $daysArray = getMonthDatesWithNames_web($currentMonthNumber);
     $weeksArray = cutMonthArrayIntoWeeks_web($daysArray);
     $matchingDummies  = MonthPlan::where('user_id', $repId)->where('month', $currentMonthNumber)->get();
-    return view('retreive-calender', compact(['weeksArray', 'clientsDataArrray', 'matchingDummies']));
+    return view('retreive-calender', compact(['weeksArray', 'clientsDataArrray', 'matchingDummies', 'repId']));
 })->name('retreive-rep-calender');
 
 Route::get('/create-user',  function () {
@@ -148,3 +149,26 @@ Route::post('/reset-user', function (Request $request) {
         return redirect()->back();
     }
 })->name('reset-user-post');
+
+
+Route::get('/approve-rep-plan/{repId}', function (Request $request) {
+    $rep_id  = $request->repId;
+    $currentMonthNumber =  date('m');
+    $currentYear = date('Y');
+    $approvalObject  = MonthApproval::where('month', $currentMonthNumber)
+        ->where('year', $currentYear)
+        ->where('user_id', $rep_id)
+        ->first();
+    if ($approvalObject) {
+        $approvalObject->isApproved = true;
+        $approvalObject->save();
+    } else {
+        $approvalObject  = new MonthApproval();
+        $approvalObject->month = $currentMonthNumber;
+        $approvalObject->year = $currentYear;
+        $approvalObject->isApproved = true;
+        $approvalObject->user_id = $rep_id;
+        $approvalObject->save();
+    }
+    return redirect()->back()->with(['msg' => 'Approved Plan']);
+})->name('approve-rep-plan');

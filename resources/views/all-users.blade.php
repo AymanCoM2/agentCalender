@@ -69,7 +69,14 @@
                         <td class="p-2">
                             <a href="{{ route('reset-user-get', $rep->id) }}">Reset Password</a>
                             <br>
-                            <a href="{{ route('retreive-rep-calender', $rep->id) }}">Approve Month Calender</a>
+                            @if (\App\Models\User::find($rep->id)->monthapproval()->where('month', '01')->where('year', '2024')->first())
+                                @if (\App\Models\User::find($rep->id)->monthapproval()->where('month', '01')->where('year', '2024')->first()->isApproved)
+                                @else
+                                    <a href="{{ route('retreive-rep-calender', $rep->id) }}">Approve Month Calender</a>
+                                @endif
+                            @else
+                                <a href="{{ route('retreive-rep-calender', $rep->id) }}">Approve Month Calender</a>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -79,7 +86,14 @@
     <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/toastify-js.js') }}"></script>
-    <script></script>
+    <script>
+        let loggoutBtn = document.getElementById("loggingOut");
+        let loggoutForm = document.getElementById("littleForm");
+        loggoutBtn.addEventListener('click', function(eventos) {
+            eventos.preventDefault();
+            loggoutForm.submit();
+        });
+    </script>
 </body>
 
 </html>

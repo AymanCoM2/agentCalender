@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\DailyProgress;
+use App\Models\MonthApproval;
 use App\Models\MonthPlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -67,7 +68,20 @@ function cutMonthArrayIntoWeeks($monthArray)
 }
 
 Route::get('rep-home', function () {
-    return view('rep-home');
+    $currentMonthNumber =  date('m');
+    $canFillCalender  = true;
+    $currentYear = date('Y');
+    $userId = Auth::user()->id;
+    $approvalObject  = MonthApproval::where('month', $currentMonthNumber)
+        ->where('year', $currentYear)
+        ->where('user_id', $userId)
+        ->first();
+    if ($approvalObject) {
+        if ($approvalObject->isApproved) {
+            $canFillCalender  = false;
+        }
+    }
+    return view('rep-home', compact('canFillCalender'));
 })->name('rep-home'); // !@ DONE 
 
 Route::get('/fill-calender', function () {

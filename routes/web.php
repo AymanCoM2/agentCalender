@@ -12,8 +12,18 @@ Route::group(['middleware' => ['needLog', 'representative']], __DIR__ . '/RepRou
 Route::group(['middleware' => ['needLog']], __DIR__ . '/AuthRoutes.php');  // * DONE 
 Route::group(['middleware' => ['needLog', 'normalAdmin']], __DIR__ . '/AdminRoutes.php');  // * DONE 
 // Route::group(['middleware' => ['auth']], __DIR__ . '/utility.php');
+
 Route::get('/login', function () {
-    // !  Check If Already Logged In then Redirect to His Home Page 
+    if (Auth::check()) {
+        $user = Auth::user();
+        if ($user->userType === 'normalAdmin') {
+            return redirect()->route('admin-home');
+        } else if ($user->userType === 'rep') {
+            return redirect()->route('rep-home');
+        } else if ($user->userType === 'superAdmin') {
+            return redirect()->route('home');
+        }
+    }
     return view('auth.login-page');
 })->name("login-get");
 
@@ -24,12 +34,19 @@ Route::post('/login', function (Request $request) {
     ]);
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
-        return redirect()->route('home');
+        $user = Auth::user();
+        if ($user->userType === 'normalAdmin') {
+            return redirect()->route('admin-home');
+        } else if ($user->userType === 'rep') {
+            return redirect()->route('rep-home');
+        } else if ($user->userType === 'superAdmin') {
+            return redirect()->route('home'); // ! TODO 
+        }
     }
     return back()->withErrors(['email' => 'The credentials do not match records.']);
 })->name("login-post");
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login-get');
 })->name('home');

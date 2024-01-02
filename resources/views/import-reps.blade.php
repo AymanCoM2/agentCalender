@@ -74,6 +74,17 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/toastify-js.js') }}"></script>
+    <script>
+        let loggoutBtn = document.getElementById("loggingOut");
+        let loggoutForm = document.getElementById("littleForm");
+        loggoutBtn.addEventListener('click', function(eventos) {
+            eventos.preventDefault();
+            loggoutForm.submit();
+        });
+    </script>
 </body>
 
 </html>

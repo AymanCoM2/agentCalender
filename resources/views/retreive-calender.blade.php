@@ -1,15 +1,24 @@
 @extends('layouts.app-retreive')
 @section('content')
     <div class="container">
+        @if (session()->has('msg'))
+            <div class="alert alert-success">
+                {{ session('msg') }}
+            </div>
+        @endif
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             @foreach ($weeksArray as $weekNumber => $daysOfWeek)
-                <li class="nav-item" role="presentation">
+                <li class="nav-item active" role="presentation">
                     <button class="nav-link" id="tab-{{ $weekNumber }}" data-bs-toggle="pill"
                         data-bs-target="#{{ $weekNumber }}" type="button" role="tab">
                         {{ $weekNumber }}
                     </button>
                 </li>
             @endforeach
+
+            <li class="nav-item" role="presentation">
+                <a href="{{ route('approve-rep-plan', $repId) }}" class="btn btn-warning rounded-pill px-3 py-2 mx-3">✅</a>
+            </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
             @foreach ($weeksArray as $weekNumber => $daysOfWeekArray)

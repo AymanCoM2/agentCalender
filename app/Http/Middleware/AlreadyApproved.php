@@ -21,7 +21,6 @@ class AlreadyApproved
             ->first();
         if ($approvalObject) {
             if ($approvalObject->isApproved) {
-                // Redirect 
                 return redirect()->route('rep-home');
             } else {
                 return $next($request);

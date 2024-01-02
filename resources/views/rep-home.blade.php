@@ -52,8 +52,9 @@
                     </div>
                     <div class="form-item">
                         <a href="{{ route('fill-calender-get') }}"
-                            class="form-style btn btn-primary rounded-pill px-3 w-100">Fill Current
-                            Month Plan</a>
+                            class="form-style btn btn-primary rounded-pill px-3 w-100">
+                            {{ $canFillCalender ? 'Fill Current Month Plan' : '✅Plan Approved' }}
+                        </a>
                     </div>
                     <div class="form-item">
                         <a href="{{ route('record-one-d-get') }}"
@@ -66,6 +67,14 @@
     </div>
     <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script>
+        let loggoutBtn = document.getElementById("loggingOut");
+        let loggoutForm = document.getElementById("littleForm");
+        loggoutBtn.addEventListener('click', function(eventos) {
+            eventos.preventDefault();
+            loggoutForm.submit();
+        });
+    </script>
 </body>
 
 </html>
