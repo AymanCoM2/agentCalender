@@ -128,8 +128,8 @@
                     success: function(data) {
                         console.log(data);
                         Toastify({
-                            text: data,
-                            duration: 3000,
+                            text: "✔️",
+                            duration: 300,
                             style: {
                                 background: "linear-gradient(to right, #00b09b, #96c93d)",
                             },
@@ -137,7 +137,7 @@
                     },
                     error: function(e) {
                         Toastify({
-                            text: e,
+                            text: "ERROR !",
                             duration: 3000,
                             style: {
                                 background: "linear-gradient(to left, #563474, #96c93d)",
