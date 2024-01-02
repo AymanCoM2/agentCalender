@@ -3,7 +3,7 @@
 ( DEPLOYMENT )
 ===================================
 Other Needs : 
-    - Searching Users / Clients ? 
+    - Searching Users/Clients ? 
     - Rep adding new user 
 ===================================
 [ Can Delay ]

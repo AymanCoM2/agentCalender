@@ -6,8 +6,8 @@
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         @foreach ($weeksArray as $weekNumber => $daysOfWeek)
             <li class="nav-item" role="presentation">
-                <button class="nav-link {{ $weekNumber == 'week_1' ? 'active' :'' }}" id="tab-{{ $weekNumber }}" data-bs-toggle="pill"
-                    data-bs-target="#{{ $weekNumber }}" type="button" role="tab">
+                <button class="nav-link {{ $weekNumber == 'week_1' ? 'active' : '' }}" id="tab-{{ $weekNumber }}"
+                    data-bs-toggle="pill" data-bs-target="#{{ $weekNumber }}" type="button" role="tab">
                     {{ $weekNumber }}
                 </button>
             </li>
@@ -15,8 +15,9 @@
     </ul>
     <div class="tab-content" id="pills-tabContent">
         @foreach ($weeksArray as $weekNumber => $daysOfWeekArray)
-            <div class="tab-pane {{ $weekNumber == 'week_1' ? 'show active' :'' }} fade" id="{{ $weekNumber }}" role="tabpanel" tabindex="0">
-                <table class="table table-responsive table-striped">
+            <div class="tab-pane {{ $weekNumber == 'week_1' ? 'show active' : '' }} fade" id="{{ $weekNumber }}"
+                role="tabpanel" tabindex="0">
+                <table class="table table-responsive table-striped overflow-auto">
                     <thead>
                         <tr>
                             <th scope="col">Client Code</th>

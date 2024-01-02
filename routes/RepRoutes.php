@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 function establishConnectionDB($inputQuery)
 {
     $serverName = "jou.is-by.us";
-    $databaseName = "LB";
+    $databaseName = "TM";
     $uid = "ayman";
     $pwd = "admin@1234";
     $port = "443";
