@@ -1,10 +1,13 @@
 <?php
 
 use App\Models\MonthApproval;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Route;
 use App\Models\MonthPlan;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,7 +17,7 @@ function establishConnectionDB_web($inputQuery)
     $databaseName = "LB";
     $uid = "ayman";
     $pwd = "admin@1234";
-    $port = "443";
+    $port = "445";
     $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         "TrustServerCertificate" => true,
@@ -76,6 +79,13 @@ Route::get('list-all-users', function () {
     return view('all-users', compact('allReps'));
 })->name('list-all-users');
 
+function paginate($items, $perPage = 5, $page = null, $options = [])
+{
+    $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+    $items = $items instanceof Collection ? $items : Collection::make($items);
+    return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+}
+
 Route::get('/retreive-rep-calender/{rep_id}', function (Request $request) {
     $repId  = $request->rep_id;
     $currentMonthNumber =  date('m'); // To seach For the Approval Model 
@@ -85,7 +95,7 @@ Route::get('/retreive-rep-calender/{rep_id}', function (Request $request) {
         SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
         FROM 
         TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
-        --WHERE T1.GroupName = '".  $repUserObject->areaCode . "'
+        --WHERE T1.GroupName = '" .  $repUserObject->areaCode . "'
 
         UNION ALL
 
@@ -93,7 +103,7 @@ Route::get('/retreive-rep-calender/{rep_id}', function (Request $request) {
         FROM 
         LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
         Order By T0.LicTradNum , T0.CardCode
-        " ; 
+        ";
     // $sampleSqlQuery  = "
     //     SELECT T1.GroupName,T0.CardName , T0.CardCode
     //     FROM
@@ -102,9 +112,12 @@ Route::get('/retreive-rep-calender/{rep_id}', function (Request $request) {
     //     ";
     $statement  = establishConnectionDB_web($sampleSqlQuery);
     $clientsDataArrray  = [];
+    // $data  = []; // !@ NWQ 
     while ($row = $statement->fetch(PDO::FETCH_OBJ)) {
         $clientsDataArrray[] = $row;
+        // $data[] = $row; // !@ NEW 
     }
+    // $clientsDataArrray = paginate($data); // !@ NEW 
     $daysArray = getMonthDatesWithNames_web($currentMonthNumber);
     $weeksArray = cutMonthArrayIntoWeeks_web($daysArray);
     $matchingDummies  = MonthPlan::where('user_id', $repId)->where('month', $currentMonthNumber)->get();
