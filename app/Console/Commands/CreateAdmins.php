@@ -19,7 +19,7 @@ class CreateAdmins extends Command
         $admin->name  = "Kholood";
         $admin->areaCode  = "null";
         $admin->userCode  =  "kholood.emad@2coom.com";
-        $admin->userType  =  'admin';
+        $admin->userType  =  'normalAdmin';
         $admin->password  =  Hash::make('12345');
         $admin->pass_as_string  =  '12345';
         $admin->save();
