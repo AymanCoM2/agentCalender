@@ -14,9 +14,11 @@ Route::get('/import-reps', function (Request $request) {
 
 Route::post('/import-reps', function (Request $request) {
     $collections = (new FastExcel)->import($request->excelFile);
-    Schema::disableForeignKeyConstraints();
-    DB::table('users')->truncate();
-    Schema::enableForeignKeyConstraints();
+    // TODO : If u truncate the Data From the User Table 
+    // !@ this will Delete also the Admin User ; 
+    // Schema::disableForeignKeyConstraints();
+    // DB::table('users')->truncate();
+    // Schema::enableForeignKeyConstraints();
     foreach ($collections as $collection) {
         $nu = new User();
         $nu->name  = $collection['Name'];
