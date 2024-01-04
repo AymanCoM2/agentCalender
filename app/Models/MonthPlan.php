@@ -15,5 +15,6 @@ class MonthPlan extends Model
         'user_id',
         'state',
         'cardCode',
+        'company'
     ];
 }

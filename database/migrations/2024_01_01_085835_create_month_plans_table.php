@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('state')->nullable(); // O , X , F , P ...etc 
             $table->string('cardCode')->nullable(); // Of the Customer/Client
+            $table->string('company')->nullable(); // LB OR TM for  Customer/Client
             $table->timestamps();
         });
     }

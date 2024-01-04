@@ -1,6 +1,3 @@
-1- Get the New Data From the new Query and Change the Models and Migration For the New 
-Data .
-    - Adding Column "Comp" For the Customer TO Distenguish 
 2- The Feature to Add new Customer By the REP 
     - If After that Client is Added to Sap, a MERGE process Happen 
 3- [ X ] Mark :
@@ -9,8 +6,7 @@ Data .
 4- Error / Success Messages (Toastr and Flashing Messages )
 5- Admin Resetting his Password {Check On that}
 6- 
-
-
+===================================
 2- Split "Remove" Year From the Table Heads 
 ===================================
 ( DEPLOYMENT )

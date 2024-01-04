@@ -15,5 +15,6 @@ class DailyProgress extends Model
         'user_id',
         'state',
         'cardCode',
+        'company'
     ];
 }
