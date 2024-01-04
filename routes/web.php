@@ -11,7 +11,6 @@ Route::group(['middleware' => ['needLog', 'normalAdmin']], __DIR__ . '/Importing
 Route::group(['middleware' => ['needLog', 'representative']], __DIR__ . '/RepRoutes.php');  // * DONE 
 Route::group(['middleware' => ['needLog']], __DIR__ . '/AuthRoutes.php');  // * DONE 
 Route::group(['middleware' => ['needLog', 'normalAdmin']], __DIR__ . '/AdminRoutes.php');  // * DONE 
-// Route::group(['middleware' => ['auth']], __DIR__ . '/utility.php');
 
 Route::get('/login', function () {
     if (Auth::check()) {

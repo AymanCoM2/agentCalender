@@ -13,7 +13,7 @@ function establishConnectionDB($inputQuery)
     $databaseName = "TM";
     $uid = "ayman";
     $pwd = "admin@1234";
-    $port = "443";
+    $port = "445";
     $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         "TrustServerCertificate" => true,
@@ -87,6 +87,19 @@ Route::get('rep-home', function () {
 Route::get('/fill-calender', function () {
     $currentMonthNumber =  date('m');
     $userAreaCode  = Auth::user()->areaCode;
+    // $sampleSqlQuery  = "
+    //     SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+    //     FROM 
+    //     TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+    //     --WHERE T1.GroupName = '". $userAreaCode . "'
+
+    //     UNION ALL
+
+    //     SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+    //     FROM 
+    //     LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+    //     Order By T0.LicTradNum , T0.CardCode
+    //     " ; 
     $sampleSqlQuery  = "
         SELECT T1.GroupName,T0.CardName , T0.CardCode
         FROM
@@ -141,11 +154,24 @@ Route::get('/record-one-day', function () {
     $currentYear  = date('Y');
     $userAreaCode  = Auth::user()->areaCode;
     $sampleSqlQuery  = "
-        SELECT T1.GroupName,T0.CardName , T0.CardCode
-        FROM
-        OCRD T0 LEFT JOIN OCRG T1 ON T0.GroupCode  = T1.GroupCode
-        WHERE T1.GroupName = '" . $userAreaCode . "'
+        SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+        FROM 
+        TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        --WHERE T1.GroupName = '" . $userAreaCode . "'
+
+        UNION ALL
+
+        SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+        FROM 
+        LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        Order By T0.LicTradNum , T0.CardCode
         ";
+    // $sampleSqlQuery  = "
+    //     SELECT T1.GroupName,T0.CardName , T0.CardCode
+    //     FROM
+    //     OCRD T0 LEFT JOIN OCRG T1 ON T0.GroupCode  = T1.GroupCode
+    //     WHERE T1.GroupName = '" . $userAreaCode . "'
+    //     ";
     $statement  = establishConnectionDB($sampleSqlQuery);
     $clientsDataArrray  = [];
     while ($row = $statement->fetch(PDO::FETCH_OBJ)) {

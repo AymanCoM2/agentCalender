@@ -82,11 +82,24 @@ Route::get('/retreive-rep-calender/{rep_id}', function (Request $request) {
 
     $repUserObject  = User::find($repId);
     $sampleSqlQuery  = "
-        SELECT T1.GroupName,T0.CardName , T0.CardCode
-        FROM
-        OCRD T0 LEFT JOIN OCRG T1 ON T0.GroupCode  = T1.GroupCode
-        WHERE T1.GroupName = '" . $repUserObject->areaCode . "'
-        ";
+        SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+        FROM 
+        TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        --WHERE T1.GroupName = '".  $repUserObject->areaCode . "'
+
+        UNION ALL
+
+        SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+        FROM 
+        LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        Order By T0.LicTradNum , T0.CardCode
+        " ; 
+    // $sampleSqlQuery  = "
+    //     SELECT T1.GroupName,T0.CardName , T0.CardCode
+    //     FROM
+    //     OCRD T0 LEFT JOIN OCRG T1 ON T0.GroupCode  = T1.GroupCode
+    //     WHERE T1.GroupName = '" . $repUserObject->areaCode . "'
+    //     ";
     $statement  = establishConnectionDB_web($sampleSqlQuery);
     $clientsDataArrray  = [];
     while ($row = $statement->fetch(PDO::FETCH_OBJ)) {
