@@ -43,4 +43,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(MonthApproval::class, 'user_id');
     }
+
+    public function clients()
+    {
+        return $this->hasMany(Client::class, 'rep_id');
+    }
 }

@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fab.css') }}">
+
     <title>Log in Page</title>
 </head>
 

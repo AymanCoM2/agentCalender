@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Client;
 use App\Models\DailyProgress;
 use App\Models\MonthApproval;
 use App\Models\MonthPlan;
@@ -205,3 +206,21 @@ Route::post('/record-one-day', function (Request $request) {
         return response()->json(['key' => "Newly-Created"]);
     }
 })->name('record-one-d-post'); // !@DONE 
+
+
+Route::post('/add-new-client', function (Request $request) {
+    $request->validate([
+        'clientName' => ['required'],
+    ]);
+
+    $clientName  = $request->clientName;
+    $notes  = $request->notes;
+    $repId  = Auth::user()->id;
+
+    $newlyCreatedClient  = new Client();
+    $newlyCreatedClient->client_name  = $clientName;
+    $newlyCreatedClient->rep_id = $repId;
+    // $newlyCreatedClient->notes  = $notes; // !@ TODO , Uncomment in Next Fresh Migration
+    $newlyCreatedClient->save();
+    return redirect()->route('rep-home')->with(['msg' => 'Client Is added ']);
+})->name('add-new-client');

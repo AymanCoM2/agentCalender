@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fab.css') }}">
+
     <title>Admin Home Page</title>
 </head>
 
@@ -77,6 +79,12 @@
                     <div class="form-item">
                         <a href="{{ route('import-reps-get') }}"
                             class="form-style btn btn-primary rounded-pill px-3 w-100">Import Excel File</a>
+                    </div>
+
+                    <hr><br>
+                    <div class="form-item">
+                        <a href="{{ route('import-reps-get') }}"
+                            class="form-style btn btn-warning rounded-pill px-3 w-100">Merge a New Client</a>
                     </div>
                 </div>
             </div>
