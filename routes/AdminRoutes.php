@@ -29,8 +29,6 @@ function establishConnectionDB_web($inputQuery)
 }
 function getMonthDatesWithNames_web($monthNumber)
 {
-    // This Function Gets The Month Number [ 12 For December ]
-    // And Then Return Associative array [ Key is the Date & Value is the Name "ie : sat"]
     if ($monthNumber < 1 || $monthNumber > 12) {
         return false;
     }
@@ -47,7 +45,6 @@ function getMonthDatesWithNames_web($monthNumber)
 }
 function cutMonthArrayIntoWeeks_web($monthArray)
 {
-    // This function takes the month array and Split it Into Weeks 
     $weeks = [
         'week_1' => [],
         'week_2' => [],
@@ -55,18 +52,12 @@ function cutMonthArrayIntoWeeks_web($monthArray)
         'week_4' => [],
         'week_5' => [],
     ];
-    // Iterate through the days and distribute them into weeks
     foreach ($monthArray as $date => $day) {
-        // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
         $dayOfWeek = date('w', strtotime($date));
-        // Get the week index based on the day of the month
         $weekIndex = ceil(date('j', strtotime($date)) / 7);
-        // If the week index is greater than 5, put it in week 5
         $weekIndex = min($weekIndex, 5);
-        // Add the date to the corresponding week
         $weeks["week_$weekIndex"][$date] = $day;
     }
-
     return $weeks;
 }
 
@@ -89,7 +80,6 @@ function paginate($items, $perPage = 5, $page = null, $options = [])
 Route::get('/retreive-rep-calender/{rep_id}', function (Request $request) {
     $repId  = $request->rep_id;
     $currentMonthNumber =  date('m'); // To seach For the Approval Model 
-
     $repUserObject  = User::find($repId);
     $sampleSqlQuery  = "
         SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
@@ -104,12 +94,6 @@ Route::get('/retreive-rep-calender/{rep_id}', function (Request $request) {
         LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
         Order By T0.LicTradNum , T0.CardCode
         ";
-    // $sampleSqlQuery  = "
-    //     SELECT T1.GroupName,T0.CardName , T0.CardCode
-    //     FROM
-    //     OCRD T0 LEFT JOIN OCRG T1 ON T0.GroupCode  = T1.GroupCode
-    //     WHERE T1.GroupName = '" . $repUserObject->areaCode . "'
-    //     ";
     $statement  = establishConnectionDB_web($sampleSqlQuery);
     $clientsDataArrray  = [];
     // $data  = []; // !@ NWQ 
@@ -142,7 +126,7 @@ Route::post('/create-user', function (Request $request) {
         $newUser->save();
         return redirect()->route('home');
     } else {
-        return redirect()->back();
+        return redirect()->back()->with(['msg'=> 'User Created']);
     }
 })->name('create-user-post');
 
@@ -167,15 +151,14 @@ Route::post('/reset-user', function (Request $request) {
         if ($chosenUser) {
             $chosenUser->password  = Hash::make($request->password);
             $chosenUser->save();
-            return redirect()->route('home');
+            return redirect()->route('admin-home')->with(['msg'=> 'User Password is Reset']);
         } else {
             dd("Error"); // abort() ; 
         }
     } else {
-        return redirect()->back();
+        return redirect()->back()->with(['msg' => 'ERROR : Passwords Not Matching !!!']);
     }
 })->name('reset-user-post');
-
 
 Route::get('/approve-rep-plan/{repId}', function (Request $request) {
     $rep_id  = $request->repId;

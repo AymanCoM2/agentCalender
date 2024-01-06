@@ -13,6 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
+            
             <a class="navbar-brand" href="{{ route('home') }}">Home</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,6 +47,20 @@
     <form action="{{ route('create-user-post') }}" method="post">
         @csrf
         <div class="container-fluid">
+            @if (session()->has('msg'))
+            <div class="alert alert-success">
+                {{ session('msg') }}
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-xs-12 mx-auto mt-5">
                     <div id="form" class="p-4">

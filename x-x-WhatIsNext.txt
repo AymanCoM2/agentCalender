@@ -1,19 +1,14 @@
-4- Error / Success Messages (Toastr and Flashing Messages )
+2- Pagination,You Will Need it 
 2- Add new Customer By the REP 
     - If After that Client is Added to Sap, a MERGE process Happen 
-3- [ X ] Mark:
+3- [ X ] Mark
     - Daily -> REMOVE IT
     - Monthly -> The Only One there 
-
-5- Admin Resetting his Password {Check On that}
 ===================================
 2- Split "Remove" Year From the Table Heads 
 ===================================
 ( DEPLOYMENT )
-===================================
-Other Needs:
-    - Searching Users/Clients ? 
-===================================
+--------------------
 [ Can Delay ]
 1- Whole Month View In HTML view 
 3- Export Data Into Excel Files 
@@ -22,8 +17,14 @@ Viewing The Whole Record For A Rep From the Admin Page ?
 ===================================
 [ UI Things ]
 1- Row Border
-2- Pagination,You Will Need it 
+
 3- Color For cells && Padding and Fonts 
 4- Row Highlight
 ===================================
 SuperAdmin Pages and Views And Routes ....etc 
+===================================
+Admin Resetting His Password in Some way ? 
+===================================
+Other Needs:
+    - Searching Users/Clients ? 
+===================================

@@ -6,6 +6,15 @@
                 {{ session('msg') }}
             </div>
         @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             @foreach ($weeksArray as $weekNumber => $daysOfWeek)
                 <li class="nav-item active" role="presentation">
