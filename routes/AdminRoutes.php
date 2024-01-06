@@ -70,13 +70,6 @@ Route::get('list-all-users', function () {
     return view('all-users', compact('allReps'));
 })->name('list-all-users');
 
-function paginate($items, $perPage = 5, $page = null, $options = [])
-{
-    $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
-    $items = $items instanceof Collection ? $items : Collection::make($items);
-    return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
-}
-
 Route::get('/retreive-rep-calender/{rep_id}', function (Request $request) {
     $repId  = $request->rep_id;
     $currentMonthNumber =  date('m'); // To seach For the Approval Model 
@@ -96,12 +89,9 @@ Route::get('/retreive-rep-calender/{rep_id}', function (Request $request) {
         ";
     $statement  = establishConnectionDB_web($sampleSqlQuery);
     $clientsDataArrray  = [];
-    // $data  = []; // !@ NWQ 
     while ($row = $statement->fetch(PDO::FETCH_OBJ)) {
         $clientsDataArrray[] = $row;
-        // $data[] = $row; // !@ NEW 
     }
-    // $clientsDataArrray = paginate($data); // !@ NEW 
     $daysArray = getMonthDatesWithNames_web($currentMonthNumber);
     $weeksArray = cutMonthArrayIntoWeeks_web($daysArray);
     $matchingDummies  = MonthPlan::where('user_id', $repId)->where('month', $currentMonthNumber)->get();
@@ -126,7 +116,7 @@ Route::post('/create-user', function (Request $request) {
         $newUser->save();
         return redirect()->route('home');
     } else {
-        return redirect()->back()->with(['msg'=> 'User Created']);
+        return redirect()->back()->with(['msg' => 'User Created']);
     }
 })->name('create-user-post');
 
@@ -151,7 +141,7 @@ Route::post('/reset-user', function (Request $request) {
         if ($chosenUser) {
             $chosenUser->password  = Hash::make($request->password);
             $chosenUser->save();
-            return redirect()->route('admin-home')->with(['msg'=> 'User Password is Reset']);
+            return redirect()->route('admin-home')->with(['msg' => 'User Password is Reset']);
         } else {
             dd("Error"); // abort() ; 
         }

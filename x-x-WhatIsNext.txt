@@ -17,7 +17,6 @@ Viewing The Whole Record For A Rep From the Admin Page ?
 ===================================
 [ UI Things ]
 1- Row Border
-
 3- Color For cells && Padding and Fonts 
 4- Row Highlight
 ===================================

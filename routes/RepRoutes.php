@@ -26,8 +26,6 @@ function establishConnectionDB($inputQuery)
 
 function getMonthDatesWithNames($monthNumber)
 {
-    // This Function Gets The Month Number [ 12 For December ]
-    // And Then Return Associative array [ Key is the Date & Value is the Name "ie : sat"]
     if ($monthNumber < 1 || $monthNumber > 12) {
         return false;
     }
@@ -45,7 +43,6 @@ function getMonthDatesWithNames($monthNumber)
 
 function cutMonthArrayIntoWeeks($monthArray)
 {
-    // This function takes the month array and Split it Into Weeks 
     $weeks = [
         'week_1' => [],
         'week_2' => [],
@@ -53,15 +50,10 @@ function cutMonthArrayIntoWeeks($monthArray)
         'week_4' => [],
         'week_5' => [],
     ];
-    // Iterate through the days and distribute them into weeks
     foreach ($monthArray as $date => $day) {
-        // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
         $dayOfWeek = date('w', strtotime($date));
-        // Get the week index based on the day of the month
         $weekIndex = ceil(date('j', strtotime($date)) / 7);
-        // If the week index is greater than 5, put it in week 5
         $weekIndex = min($weekIndex, 5);
-        // Add the date to the corresponding week
         $weeks["week_$weekIndex"][$date] = $day;
     }
     return $weeks;
@@ -87,25 +79,26 @@ Route::get('rep-home', function () {
 Route::get('/fill-calender', function () {
     $currentMonthNumber =  date('m');
     $userAreaCode  = Auth::user()->areaCode;
-    // $sampleSqlQuery  = "
-    //     SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
-    //     FROM 
-    //     TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
-    //     --WHERE T1.GroupName = '". $userAreaCode . "'
-
-    //     UNION ALL
-
-    //     SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
-    //     FROM 
-    //     LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
-    //     Order By T0.LicTradNum , T0.CardCode
-    //     " ; 
     $sampleSqlQuery  = "
-        SELECT T1.GroupName,T0.CardName , T0.CardCode
-        FROM
-        OCRD T0 LEFT JOIN OCRG T1 ON T0.GroupCode  = T1.GroupCode
-        WHERE T1.GroupName = '" . $userAreaCode . "'
+        SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+        FROM 
+        TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        --WHERE T1.GroupName = '" . $userAreaCode . "'
+
+        UNION ALL
+
+        SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+        FROM 
+        LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        Order By T0.LicTradNum , T0.CardCode
         ";
+
+    // $sampleSqlQuery  = "
+    //     SELECT T1.GroupName,T0.CardName , T0.CardCode
+    //     FROM
+    //     OCRD T0 LEFT JOIN OCRG T1 ON T0.GroupCode  = T1.GroupCode
+    //     WHERE T1.GroupName = '" . $userAreaCode . "'
+    //     ";
     $statement  = establishConnectionDB($sampleSqlQuery);
     $clientsDataArrray  = [];
     while ($row = $statement->fetch(PDO::FETCH_OBJ)) {
