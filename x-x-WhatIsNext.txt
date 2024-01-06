@@ -1,4 +1,3 @@
-2- Pagination,You Will Need it 
 2- Add new Customer By the REP 
     - If After that Client is Added to Sap, a MERGE process Happen 
 3- [ X ] Mark
@@ -27,3 +26,7 @@ Admin Resetting His Password in Some way ?
 Other Needs:
     - Searching Users/Clients ? 
 ===================================
+2- Pagination,You Will Need it 
+    - Leave It as a Last Challenge ; 
+===================================
+
