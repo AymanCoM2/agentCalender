@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login-style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fab.css') }}">
-
     <title>Admin Home Page</title>
 </head>
 

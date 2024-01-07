@@ -1,5 +1,3 @@
-2- Add new Customer By the REP 
-    - If After that Client is Added to Sap, a MERGE process Happen 
 3- [ X ] Mark
     - Daily -> REMOVE IT
     - Monthly -> The Only One there 
@@ -7,19 +5,11 @@
 2- Split "Remove" Year From the Table Heads 
 ===================================
 ( DEPLOYMENT )
---------------------
-[ Can Delay ]
-1- Whole Month View In HTML view 
-3- Export Data Into Excel Files 
-===================================
-Viewing The Whole Record For A Rep From the Admin Page ? 
 ===================================
 [ UI Things ]
 1- Row Border
 3- Color For cells && Padding and Fonts 
 4- Row Highlight
-===================================
-SuperAdmin Pages and Views And Routes ....etc 
 ===================================
 Admin Resetting His Password in Some way ? 
 ===================================
@@ -29,4 +19,13 @@ Other Needs:
 2- Pagination,You Will Need it 
     - Leave It as a Last Challenge ; 
 ===================================
+===================================
+Serving Multiple projects From Nginx , NOT from the Local Server  ; 
+===================================
+===================================
+SuperAdmin Pages and Views And Routes ....etc 
 
+
+data-task-month="12" - Change this
+
+2- Add new Customer By the REP +  a MERGE process  

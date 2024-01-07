@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
+use Rap2hpoutre\FastExcel\FastExcel;
+
 
 class CreateAdmins extends Command
 {
@@ -25,6 +27,16 @@ class CreateAdmins extends Command
         $admin->save();
 
         // TODO : superAdmin User ; 
+        $collections = (new FastExcel)->import('Book12.xlsx');
+        foreach ($collections as $collection) {
+            $nu = new User();
+            $nu->name  = $collection['Name'];
+            $nu->userCode  = $collection['Email'];
+            $nu->areaCode  = $collection['Code'];
+            $nu->password  = Hash::make('123');
+            $nu->pass_as_string  = '123';
+            $nu->save();
+        }
         $this->info("Admin is Created , Still the Super One");
     }
 }

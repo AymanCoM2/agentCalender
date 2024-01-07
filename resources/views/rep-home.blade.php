@@ -80,16 +80,17 @@
                     </div>
 
                     <hr><br>
+
                     <div class="form-item">
-                        <a href="{{ route('record-one-d-get') }}"
-                            class="form-style btn btn-info rounded-pill px-3 w-100">Fill Today
-                            Progress(New Client)</a>
+                        <a href="{{ route('fill-calender-get-cust') }}"
+                            class="form-style btn btn-info rounded-pill px-3 w-100">Fill Current
+                            Month Plan(New Client)</a>
                     </div>
 
                     <div class="form-item">
                         <a href="{{ route('record-one-d-get') }}"
-                            class="form-style btn btn-info rounded-pill px-3 w-100">Fill Current
-                            Month Plan(New Client)</a>
+                            class="form-style btn btn-info rounded-pill px-3 w-100">Fill Today
+                            Progress(New Client)</a>
                     </div>
                 </div>
             </div>

@@ -34,6 +34,11 @@ class User extends Authenticatable
         return $this->hasMany(MonthPlan::class, 'user_id');
     }
 
+    public function custmonthplan()
+    {
+        return $this->hasMany(CustMonthPlan::class, 'user_id');
+    }
+
     public function dailyprogress()
     {
         return $this->hasMany(DailyProgress::class, 'user_id');

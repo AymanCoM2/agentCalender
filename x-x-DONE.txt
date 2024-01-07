@@ -1,3 +1,4 @@
+php artisan app:create-admins
 ===================================
 Super Admin Mails & admin Mail ???????? for the Command 
 kholood.emad@2coom.com

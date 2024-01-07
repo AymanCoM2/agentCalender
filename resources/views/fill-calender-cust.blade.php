@@ -1,5 +1,5 @@
 <meta name="csrf-token" content="{{ csrf_token() }}" />
-@extends('layouts.app')
+@extends('layouts.app-cust')
 @php
 @endphp
 @section('content')
@@ -20,19 +20,16 @@
                 <table class="table table-responsive table-striped overflow-auto">
                     <thead>
                         <tr>
-                            <th scope="col">Client Code</th>
                             <th scope="col">Client Name</th>
                             <th scope="col" colspan="7">Month</th>
                         </tr>
                         <tr>
-                            <th></th>
                             <th></th>
                             @foreach ($daysOfWeekArray as $dateOfDay => $dayName)
                                 <th>{{ $dayName }}</th>
                             @endforeach
                         </tr>
                         <tr>
-                            <th></th>
                             <th></th>
                             @foreach ($daysOfWeekArray as $dateOfDay => $dayName)
                                 <th>{{ $dateOfDay }}</th>
@@ -42,14 +39,14 @@
                     <tbody>
                         @foreach ($clientsDataArrray as $eachClient)
                             <tr>
-                                <td>{{ $eachClient->CardCode }}</td>
-                                <td>{{ $eachClient->CardName }}</td>
+                                <td>{{ $eachClient->client_name }}</td>
                                 @foreach ($daysOfWeekArray as $eachDayDate => $eachDateName)
                                     <td>
                                         @php
                                             $flag = false;
                                             foreach ($matchingMonthPlan as $dummyMatchPlan) {
-                                                if ($dummyMatchPlan->date == $eachDayDate && $dummyMatchPlan->cardCode == $eachClient->CardCode) {
+                                                if ($dummyMatchPlan->date == $eachDayDate && $dummyMatchPlan->cardCode == $eachClient->id) {
+                                                    // if ($dummyMatchPlan->date == $eachDayDate && $dummyMatchPlan->cardCode == $eachClient->CardCode) {
                                                     $flag = true;
                                                     break;
                                                 }
@@ -59,7 +56,7 @@
                                             data-current-symbo="{{ $flag ? $dummyMatchPlan->state : '_' }}"
                                             data-task-date="{{ $eachDayDate }}"
                                             data-task-month="{{ $currentMonthNumber }}"
-                                            data-card-code="{{ $eachClient->CardCode }}"
+                                            data-card-code="{{ $eachClient->id }}" {{-- data-card-code="{{ $eachClient->CardCode }}" --}}
                                             data-rep-id="{{ Auth::user()->id }}">
                                             {{ $flag ? $dummyMatchPlan->state : '_' }}</div>
                                     </td>
