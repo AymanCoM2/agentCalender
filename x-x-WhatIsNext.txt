@@ -1,27 +1,12 @@
-2- Split "Remove" Year From the Table Heads 
+Admin Resetting His Password in Some way ? 
+===================================
+2- Pagination,You Will Need it 
+    - Leave It as a Last Challenge 
+===================================
+SuperAdmin /Pages/Views/Routes ....etc 
+data-task-month="12" - Change this
+2- Add new Customer By the REP +  a MERGE process  
 ===================================
 ( DEPLOYMENT )
 ===================================
-[ UI Things ]
-1- Row Border
-3- Color For cells && Padding and Fonts 
-4- Row Highlight
-===================================
-Admin Resetting His Password in Some way ? 
-===================================
-Other Needs:
-    - Searching Users/Clients ? 
-===================================
-2- Pagination,You Will Need it 
-    - Leave It as a Last Challenge ; 
-===================================
-===================================
-Serving Multiple projects From Nginx , NOT from the Local Server  ; 
-===================================
-===================================
-SuperAdmin Pages and Views And Routes ....etc 
-
-
-data-task-month="12" - Change this
-
-2- Add new Customer By the REP +  a MERGE process  
+Serving Multiple projects From Nginx , NOT from the Local Server

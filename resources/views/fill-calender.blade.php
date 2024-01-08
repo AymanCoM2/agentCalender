@@ -1,7 +1,5 @@
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @extends('layouts.app')
-@php
-@endphp
 @section('content')
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         @foreach ($weeksArray as $weekNumber => $daysOfWeek)
@@ -17,15 +15,15 @@
         @foreach ($weeksArray as $weekNumber => $daysOfWeekArray)
             <div class="tab-pane {{ $weekNumber == 'week_1' ? 'show active' : '' }} fade" id="{{ $weekNumber }}"
                 role="tabpanel" tabindex="0">
-                <table class="table table-responsive table-striped overflow-auto">
+                <table class="table table-responsive table-striped overflow-scroll" id="myTable">
                     <thead>
                         <tr>
                             <th scope="col">Client Code</th>
                             <th scope="col">Client Name</th>
-                            <th scope="col" colspan="7">Month</th>
+                            <th scope="col" colspan="7">Month : {{ 'JAN_TEST' }}</th>
                         </tr>
                         <tr>
-                            <th></th>
+                            <th class="thick-border"></th>
                             <th></th>
                             @foreach ($daysOfWeekArray as $dateOfDay => $dayName)
                                 <th>{{ $dayName }}</th>
@@ -35,7 +33,7 @@
                             <th></th>
                             <th></th>
                             @foreach ($daysOfWeekArray as $dateOfDay => $dayName)
-                                <th>{{ $dateOfDay }}</th>
+                                <th>{{ \Carbon\Carbon::parse($dateOfDay)->format('d') }}</th>
                             @endforeach
                         </tr>
                     </thead>
@@ -43,7 +41,7 @@
                         @foreach ($clientsDataArrray as $eachClient)
                             <tr>
                                 <td>{{ $eachClient->CardCode }}</td>
-                                <td>{{ $eachClient->CardName }}</td>
+                                <td> {{ $eachClient->CardName }} </td>
                                 @foreach ($daysOfWeekArray as $eachDayDate => $eachDateName)
                                     <td>
                                         @php

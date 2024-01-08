@@ -25,6 +25,15 @@ td {
   /* To Disable Selecting Letter We Use the Below Lines  */
 }
 
+.inner_cello {
+  display: inline-block;
+  border: 1px solid black;
+  white-space: nowrap; /* This prevents text wrapping */
+  margin: 0;
+  padding: 0px !important;
+  overflow: hidden; /* Prevents cells from going outside the parent cell */
+}
+
 .inner_cell:hover {
   cursor: pointer;
 }

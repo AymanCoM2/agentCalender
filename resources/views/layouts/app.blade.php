@@ -23,6 +23,7 @@
 </style>
 
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('home') }}">Home</a>
@@ -55,9 +56,10 @@
             </div>
         </div>
     </nav>
-    <div class="container m-4">
+    <div class="container">
         @yield('content')
     </div>
+
     <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/toastify-js.js') }}"></script>
