@@ -153,18 +153,6 @@
                 switch (currentSymbol) {
                     case "_":
                         currentSymbol = "X"; // Clear the cell
-                        eachCell.style.backgroundColor = "white";
-                        eachCell.dataset.currentSymbol = currentSymbol;
-                        saveCellData(
-                            currentSymbol,
-                            taskDate,
-                            taskMonth,
-                            cardCode,
-                            repId
-                        );
-                        break;
-                    case "X":
-                        currentSymbol = "O"; // Clear the cell
                         eachCell.style.backgroundColor = "Orange";
                         eachCell.dataset.currentSymbol = currentSymbol;
                         saveCellData(
@@ -175,44 +163,8 @@
                             repId
                         );
                         break;
-                    case "O":
-                        currentSymbol = "F"; // Change to "F" on the next click
-                        eachCell.style.backgroundColor = "red";
-                        eachCell.dataset.currentSymbol = currentSymbol;
-                        saveCellData(
-                            currentSymbol,
-                            taskDate,
-                            taskMonth,
-                            cardCode,
-                            repId
-                        );
-                        break;
-                    case "F":
-                        currentSymbol = "P"; // Change to "P" on the next click
-                        eachCell.style.backgroundColor = "green";
-                        eachCell.dataset.currentSymbol = currentSymbol;
-                        saveCellData(
-                            currentSymbol,
-                            taskDate,
-                            taskMonth,
-                            cardCode,
-                            repId
-                        );
-                        break;
-                    case "P":
-                        currentSymbol = "N"; // Change to "N" on the next click
-                        eachCell.style.backgroundColor = "blue";
-                        eachCell.dataset.currentSymbol = currentSymbol;
-                        saveCellData(
-                            currentSymbol,
-                            taskDate,
-                            taskMonth,
-                            cardCode,
-                            repId
-                        );
-                        break;
-                    case "N":
-                        currentSymbol = "_"; // Change to "" (clear) on the next click
+                    case "X":
+                        currentSymbol = "_"; // Clear the cell
                         eachCell.style.backgroundColor = "white";
                         eachCell.dataset.currentSymbol = currentSymbol;
                         saveCellData(
@@ -223,6 +175,54 @@
                             repId
                         );
                         break;
+                        // case "O":
+                        //     currentSymbol = "F"; // Change to "F" on the next click
+                        //     eachCell.style.backgroundColor = "red";
+                        //     eachCell.dataset.currentSymbol = currentSymbol;
+                        //     saveCellData(
+                        //         currentSymbol,
+                        //         taskDate,
+                        //         taskMonth,
+                        //         cardCode,
+                        //         repId
+                        //     );
+                        //     break;
+                        // case "F":
+                        //     currentSymbol = "P"; // Change to "P" on the next click
+                        //     eachCell.style.backgroundColor = "green";
+                        //     eachCell.dataset.currentSymbol = currentSymbol;
+                        //     saveCellData(
+                        //         currentSymbol,
+                        //         taskDate,
+                        //         taskMonth,
+                        //         cardCode,
+                        //         repId
+                        //     );
+                        //     break;
+                        // case "P":
+                        //     currentSymbol = "N"; // Change to "N" on the next click
+                        //     eachCell.style.backgroundColor = "blue";
+                        //     eachCell.dataset.currentSymbol = currentSymbol;
+                        //     saveCellData(
+                        //         currentSymbol,
+                        //         taskDate,
+                        //         taskMonth,
+                        //         cardCode,
+                        //         repId
+                        //     );
+                        //     break;
+                        // case "N":
+                        //     currentSymbol = "_"; // Change to "" (clear) on the next click
+                        //     eachCell.style.backgroundColor = "white";
+                        //     eachCell.dataset.currentSymbol = currentSymbol;
+                        //     saveCellData(
+                        //         currentSymbol,
+                        //         taskDate,
+                        //         taskMonth,
+                        //         cardCode,
+                        //         repId
+                        //     );
+                        //     break;
                     default:
                         break;
                 }

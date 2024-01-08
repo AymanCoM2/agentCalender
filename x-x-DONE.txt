@@ -8,3 +8,8 @@ NOTE : command File is ALREADY created, Only Need to Write the "handle" Function
 Change the Models and Migration For the New Data .
     - Adding Column "Comp" For the Customer TO Distenguish 
 =======================================
+3- [ X ] Mark
+    - Daily -> REMOVE IT
+    - Monthly -> The Only One there  ?????????? 
+(For The "One Day" How do they want it ?)
+===================================

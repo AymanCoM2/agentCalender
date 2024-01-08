@@ -1,7 +1,3 @@
-3- [ X ] Mark
-    - Daily -> REMOVE IT
-    - Monthly -> The Only One there 
-===================================
 2- Split "Remove" Year From the Table Heads 
 ===================================
 ( DEPLOYMENT )
