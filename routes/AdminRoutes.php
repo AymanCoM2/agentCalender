@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Client;
+use App\Models\CustDailyProgress;
+use App\Models\DailyProgress;
 use App\Models\MonthApproval;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Route;
@@ -171,3 +174,83 @@ Route::get('/approve-rep-plan/{repId}', function (Request $request) {
     }
     return redirect()->back()->with(['msg' => 'Approved Plan']);
 })->name('approve-rep-plan');
+
+Route::get('/view-daily-progress', function (Request $request) {
+    $allReps  = User::where('userType', 'rep')->get();
+    $todaysDate =  date('Y-m-d');
+    $clientsDataArrrayCust = null;
+    $clientsDataArrray = null;
+    $dailyProgressRecord = null;
+    $dailyProgressRecordCust = null;
+    $currentMonthNumber =  date('m');
+    $todaysDate  = date('Y-m-d');
+    $currentYear  = date('Y');
+
+    if ($request->selected_date) {
+        $todaysDate = $request->selected_date;
+        if ($request->selected_rep) {
+            $repUser = User::find($request->selected_rep);
+            // ^ First Getting Custom Daily Progress
+            $userAreaCode  = $repUser->areaCode;
+            $clientsDataArrrayCust  = Client::where('rep_id', $repUser->id)->get(); // use Get to Get a Collection Array
+            $dailyProgressRecordCust  = CustDailyProgress::where('user_id', $repUser->id)->where('date', $todaysDate)->get();
+
+            // & Now the Other Daily Progres 
+            $sampleSqlQuery  = "
+                SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+                FROM 
+                TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+                --WHERE T1.GroupName = '" . $userAreaCode . "'
+
+                UNION ALL
+
+                SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+                FROM 
+                LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+                Order By T0.LicTradNum , T0.CardCode
+                ";
+            $statement  = establishConnectionDB_web($sampleSqlQuery);
+            $clientsDataArrray  = [];
+            while ($row = $statement->fetch(PDO::FETCH_OBJ)) {
+                $clientsDataArrray[] = $row;
+            }
+            $dailyProgressRecord  = DailyProgress::where('user_id', $repUser->id)->where('date', $todaysDate)->get();
+            return view('admin-view-daily', compact(['allReps', 'todaysDate', 'clientsDataArrrayCust', 'dailyProgressRecordCust', 'todaysDate', 'currentMonthNumber', 'clientsDataArrray', 'dailyProgressRecord']));
+        } else {
+            return view('admin-view-daily', compact(['allReps', 'todaysDate', 'clientsDataArrrayCust', 'dailyProgressRecordCust', 'todaysDate', 'currentMonthNumber', 'clientsDataArrray', 'dailyProgressRecord']))->with(['msg' => 'Error Loading Data!']);
+        }
+    } else {
+        if ($request->selected_rep) {
+            $repUser = User::find($request->selected_rep);
+            // ^ First Getting Custom Daily Progress
+
+            $userAreaCode  = $repUser->areaCode;
+            $clientsDataArrrayCust  = Client::where('rep_id', $repUser->id)->get(); // use Get to Get a Collection Array
+            $dailyProgressRecordCust  = CustDailyProgress::where('user_id', $repUser->id)->where('date', $todaysDate)->get();
+
+            // & Now the Other Daily Progres 
+            $sampleSqlQuery  = "
+                SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+                FROM 
+                TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+                --WHERE T1.GroupName = '" . $userAreaCode . "'
+
+                UNION ALL
+
+                SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+                FROM 
+                LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+                Order By T0.LicTradNum , T0.CardCode
+                ";
+            $statement  = establishConnectionDB_web($sampleSqlQuery);
+            $clientsDataArrray  = [];
+            while ($row = $statement->fetch(PDO::FETCH_OBJ)) {
+                $clientsDataArrray[] = $row;
+            }
+            $dailyProgressRecord  = DailyProgress::where('user_id', $repUser->id)->where('date', $todaysDate)->get();
+            return view('admin-view-daily', compact(['allReps', 'todaysDate', 'clientsDataArrrayCust', 'dailyProgressRecordCust', 'todaysDate', 'currentMonthNumber', 'clientsDataArrray', 'dailyProgressRecord']));
+        } else {
+            return view('admin-view-daily', compact(['allReps', 'todaysDate', 'clientsDataArrrayCust', 'dailyProgressRecordCust', 'todaysDate', 'currentMonthNumber', 'clientsDataArrray', 'dailyProgressRecord']))->with(['msg' => 'Error Loading Data!']);
+        }
+    }
+})->name('view-daily-progress');

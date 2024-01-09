@@ -80,6 +80,11 @@
                             class="form-style btn btn-primary rounded-pill px-3 w-100">Import Excel File</a>
                     </div>
 
+                    <hr>
+                    <div class="form-item">
+                        <a href="{{ route('view-daily-progress') }}"
+                            class="form-style btn btn-info rounded-pill px-3 w-100">View Daily Progress</a>
+                    </div>
                     <hr><br>
                     <div class="form-item">
                         <a href="{{ route('import-reps-get') }}"

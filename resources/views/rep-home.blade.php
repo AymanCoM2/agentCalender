@@ -78,9 +78,7 @@
                             class="form-style btn btn-warning rounded-pill px-3 w-100">Fill Today
                             Progress</a>
                     </div>
-
                     <hr><br>
-
                     <div class="form-item">
                         <a href="{{ route('fill-calender-get-cust') }}"
                             class="form-style btn btn-info rounded-pill px-3 w-100">Fill Current
@@ -88,7 +86,7 @@
                     </div>
 
                     <div class="form-item">
-                        <a href="{{ route('record-one-d-get') }}"
+                        <a href="{{ route('record-one-d-get-cust') }}"
                             class="form-style btn btn-info rounded-pill px-3 w-100">Fill Today
                             Progress(New Client)</a>
                     </div>

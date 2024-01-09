@@ -266,9 +266,9 @@ Route::get('/record-one-day-cust', function () {
     $clientsDataArrray  = Client::where('rep_id', Auth::user()->id)->get(); // use Get to Get a Collection Array
     $dailyProgressRecord  = CustDailyProgress::where('user_id', Auth::user()->id)->where('date', $todaysDate)->get();
     return view('one-day-calender-cust', compact(['clientsDataArrray', 'dailyProgressRecord', 'todaysDate', 'currentMonthNumber']));
-})->name('record-one-d-get'); // !@DONE 
+})->name('record-one-d-get-cust'); // !@DONE 
 
-Route::post('/record-one-day', function (Request $request) {
+Route::post('/record-one-day-cust', function (Request $request) {
     $currentMonthNumber =  date('m');
     $todaysDate  = date('Y-m-d');
     $currentYear  = date('Y');
