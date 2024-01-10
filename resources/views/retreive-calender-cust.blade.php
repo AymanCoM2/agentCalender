@@ -56,8 +56,40 @@
                         <tbody>
                             @foreach ($clientsDataArrray as $eachClient)
                                 <tr>
-                                    <td>{{ $eachClient->client_name }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop-{{ $eachClient->id }}">
+                                            Merge
+                                        </button>
+                                        {{ $eachClient->client_name }}
+                                    </td>
                                     <!-- Repeat for the rest of the days -->
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="staticBackdrop-{{ $eachClient->id }}"
+                                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('merge-post') }}" method="post">
+                                                        @csrf
+                                                        Sap Code:<input type="text" name="sapCode">
+                                                        <input type="hidden" name="theId" value="{{ $eachClient->id }}">
+                                                        <button type="submit" class="btn btn-primary">Merge</button>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal -->
                                     @foreach ($daysOfWeekArray as $eachDayDate => $eachDateName)
                                         <td>
                                             @php

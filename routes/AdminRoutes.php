@@ -266,5 +266,30 @@ Route::get('/retreive-calender-cust/{rep_id}', function (Request $request) {
     $daysArray = getMonthDatesWithNames_web($currentMonthNumber);
     $weeksArray = cutMonthArrayIntoWeeks_web($daysArray);
     $matchingDummies  = CustMonthPlan::where('user_id', $user->id)->where('month', $currentMonthNumber)->get(); // TODO  : This Needs To be Changed To "Cust Month Plan " 
-    return view('retreive-calender-cust', compact(['weeksArray', 'clientsDataArrray', 'matchingDummies', 'currentMonthNumber','repId']));
+    return view('retreive-calender-cust', compact(['weeksArray', 'clientsDataArrray', 'matchingDummies', 'currentMonthNumber', 'repId']));
 })->name('retreive-calender-get-cust')->middleware('alreadyApproved'); // !@DONE 
+
+
+Route::post('/merge-post', function (Request $request) {
+    $request->validate([
+        'sapCode' => ['required'],
+    ]);
+    $cardCode = $request->sapCode;
+    $theEntryId  = $request->theId;
+    $toBeMerged = CustMonthPlan::where('cardCode', $theEntryId)->get();
+
+    foreach ($toBeMerged as $eachRecord) {
+        $mp = new MonthPlan();
+        $mp->month  = $eachRecord->month;
+        $mp->year  = $eachRecord->year;
+        $mp->date  = $eachRecord->date;
+        $mp->cardCode  = $cardCode; // ! This is the Important Part 
+        $mp->user_id  = $eachRecord->user_id;
+        $mp->state   = $eachRecord->state;
+        $mp->save();
+        $eachRecord->delete();
+    }
+    $theClient = Client::find($theEntryId);
+    $theClient->delete();
+    return redirect()->back();
+})->name('merge-post');
