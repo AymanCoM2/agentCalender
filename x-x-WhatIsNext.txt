@@ -1,12 +1,3 @@
 ( DEPLOYMENT )
 ===================================
-Admin Resetting His Password in Some way ? 
-2- Pagination,You Will Need it 
-    - Leave It as a Last Challenge 
-===================================
-data-task-month="12" - Change this
-===================================
-SuperAdmin /Pages/Views/Routes ..etc 
-2- Add new Customer By the REP +  a MERGE process  
-===================================
-Serving Multiple projects From Nginx , NOT from the Local Server
+a MERGE process  / Approve Cust 

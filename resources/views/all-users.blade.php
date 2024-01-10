@@ -39,7 +39,7 @@
                                         <a class="dropdown-item" href="#" id="loggingOut">Log Out</a>
                                     </form>
                                 </li>
-                                <li><a class="dropdown-item" href="#">30 Month View</a></li>
+
                             </ul>
                         </li>
                     @endauth
@@ -77,6 +77,8 @@
                             @else
                                 <a href="{{ route('retreive-rep-calender', $rep->id) }}">Approve Month Calender</a>
                             @endif
+                            <br>
+                            <a href="{{ route('retreive-calender-get-cust', $rep->id) }}">Cust Month Calender</a>
                         </td>
                     </tr>
                 @endforeach

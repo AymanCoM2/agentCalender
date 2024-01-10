@@ -2,6 +2,7 @@
 
 use App\Models\Client;
 use App\Models\CustDailyProgress;
+use App\Models\CustMonthPlan;
 use App\Models\DailyProgress;
 use App\Models\MonthApproval;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -254,3 +255,16 @@ Route::get('/view-daily-progress', function (Request $request) {
         }
     }
 })->name('view-daily-progress');
+
+// ----------------
+Route::get('/retreive-calender-cust/{rep_id}', function (Request $request) {
+    $currentMonthNumber =  date('m');
+    $user = User::find($request->rep_id);
+    $repId  = $request->rep_id;
+    $userAreaCode  = $user->areaCode;
+    $clientsDataArrray  = Client::where('rep_id', $user->id)->get(); // use Get to Get a Collection Array
+    $daysArray = getMonthDatesWithNames_web($currentMonthNumber);
+    $weeksArray = cutMonthArrayIntoWeeks_web($daysArray);
+    $matchingDummies  = CustMonthPlan::where('user_id', $user->id)->where('month', $currentMonthNumber)->get(); // TODO  : This Needs To be Changed To "Cust Month Plan " 
+    return view('retreive-calender-cust', compact(['weeksArray', 'clientsDataArrray', 'matchingDummies', 'currentMonthNumber','repId']));
+})->name('retreive-calender-get-cust')->middleware('alreadyApproved'); // !@DONE 

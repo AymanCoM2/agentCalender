@@ -1,4 +1,4 @@
-php artisan app:create-admins
+
 ===================================
 Super Admin Mails & admin Mail ???????? for the Command 
 kholood.emad@2coom.com
@@ -13,3 +13,6 @@ Change the Models and Migration For the New Data .
     - Monthly -> The Only One there  ?????????? 
 (For The "One Day" How do they want it ?)
 ===================================
+data-task-month="12" - Change this
+Admin Resetting His Password in Some way ? 
+Serving Multiple projects From Nginx , NOT from the Local Server

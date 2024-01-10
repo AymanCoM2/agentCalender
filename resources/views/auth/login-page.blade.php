@@ -40,7 +40,7 @@
                                         <a class="dropdown-item" href="#" id="loggingOut">Log Out</a>
                                     </form>
                                 </li>
-                                <li><a class="dropdown-item" href="#">30 Month View</a></li>
+
                             </ul>
                         </li>
                     @endauth

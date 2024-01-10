@@ -32,7 +32,7 @@
                         <tr>
                             <th></th>
                             @foreach ($daysOfWeekArray as $dateOfDay => $dayName)
-                                <th>{{ $dateOfDay }}</th>
+                                <th>{{ \Carbon\Carbon::parse($dateOfDay)->format('d') }}</th>
                             @endforeach
                         </tr>
                     </thead>

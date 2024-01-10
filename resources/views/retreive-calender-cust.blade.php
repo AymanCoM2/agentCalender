@@ -1,4 +1,4 @@
-@extends('layouts.app-retreive')
+@extends('layouts.app-retreive-cust')
 @section('content')
     <div class="container">
         @if (session()->has('msg'))
@@ -36,12 +36,10 @@
                     <table class="table table-responsive table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Client Code</th>
                                 <th scope="col">Client Name</th>
                                 <th scope="col" colspan="7">Month</th>
                             </tr>
                             <tr>
-                                <th></th>
                                 <th></th>
                                 <!-- Repeat for the rest of the days -->
                                 @foreach ($daysOfWeekArray as $dateOfDay => $dayName)
@@ -49,7 +47,6 @@
                                 @endforeach
                             </tr>
                             <tr>
-                                <th></th>
                                 <th></th>
                                 @foreach ($daysOfWeekArray as $dateOfDay => $dayName)
                                     <th>{{ \Carbon\Carbon::parse($dateOfDay)->format('d') }}</th>
@@ -59,15 +56,14 @@
                         <tbody>
                             @foreach ($clientsDataArrray as $eachClient)
                                 <tr>
-                                    <td>{{ $eachClient->CardCode }}</td>
-                                    <td>{{ $eachClient->CardName }}</td>
+                                    <td>{{ $eachClient->client_name }}</td>
                                     <!-- Repeat for the rest of the days -->
                                     @foreach ($daysOfWeekArray as $eachDayDate => $eachDateName)
                                         <td>
                                             @php
                                                 $flag = false;
                                                 foreach ($matchingDummies as $dummy) {
-                                                    if ($dummy->date == $eachDayDate && $dummy->cardCode == $eachClient->CardCode) {
+                                                    if ($dummy->date == $eachDayDate && $dummy->cardCode == $eachClient->id) {
                                                         $flag = true;
                                                         break;
                                                     }

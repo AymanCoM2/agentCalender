@@ -36,7 +36,6 @@
                                         <a class="dropdown-item" href="#" id="loggingOut">Log Out</a>
                                     </form>
                                 </li>
-                                <li><a class="dropdown-item" href="#">30 Month View</a></li>
                             </ul>
                         </li>
                     @endauth
@@ -84,11 +83,6 @@
                     <div class="form-item">
                         <a href="{{ route('view-daily-progress') }}"
                             class="form-style btn btn-info rounded-pill px-3 w-100">View Daily Progress</a>
-                    </div>
-                    <hr><br>
-                    <div class="form-item">
-                        <a href="{{ route('import-reps-get') }}"
-                            class="form-style btn btn-warning rounded-pill px-3 w-100">Merge a New Client</a>
                     </div>
                 </div>
             </div>
