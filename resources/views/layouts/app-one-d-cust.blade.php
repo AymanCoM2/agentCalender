@@ -145,18 +145,6 @@
                 // Toggle through symbols
                 switch (currentSymbol) {
                     case "_":
-                        currentSymbol = "X"; // Clear the cell
-                        eachCell.style.backgroundColor = "white";
-                        eachCell.dataset.currentSymbol = currentSymbol;
-                        saveCellData(
-                            currentSymbol,
-                            taskDate,
-                            taskMonth,
-                            cardCode,
-                            repId
-                        );
-                        break;
-                    case "X":
                         currentSymbol = "O"; // Clear the cell
                         eachCell.style.backgroundColor = "Orange";
                         eachCell.dataset.currentSymbol = currentSymbol;
@@ -168,6 +156,18 @@
                             repId
                         );
                         break;
+                        // case "X":
+                        //     currentSymbol = "O"; // Clear the cell
+                        //     eachCell.style.backgroundColor = "Orange";
+                        //     eachCell.dataset.currentSymbol = currentSymbol;
+                        //     saveCellData(
+                        //         currentSymbol,
+                        //         taskDate,
+                        //         taskMonth,
+                        //         cardCode,
+                        //         repId
+                        //     );
+                        //     break;
                     case "O":
                         currentSymbol = "F"; // Change to "F" on the next click
                         eachCell.style.backgroundColor = "red";
