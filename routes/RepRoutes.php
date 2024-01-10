@@ -2,6 +2,7 @@
 
 use App\Models\Client;
 use App\Models\CustDailyProgress;
+use App\Models\CustMonthApproval;
 use App\Models\CustMonthPlan;
 use App\Models\DailyProgress;
 use App\Models\MonthApproval;
@@ -65,6 +66,7 @@ function cutMonthArrayIntoWeeks($monthArray)
 Route::get('rep-home', function () {
     $currentMonthNumber =  date('m');
     $canFillCalender  = true;
+    $canFillCustCalender  = true;
     $currentYear = date('Y');
     $userId = Auth::user()->id;
     $approvalObject  = MonthApproval::where('month', $currentMonthNumber)
@@ -76,7 +78,17 @@ Route::get('rep-home', function () {
             $canFillCalender  = false;
         }
     }
-    return view('rep-home', compact('canFillCalender'));
+
+    $approvalObjectCust  = CustMonthApproval::where('month', $currentMonthNumber)
+        ->where('year', $currentYear)
+        ->where('user_id', $userId)
+        ->first();
+    if ($approvalObjectCust) {
+        if ($approvalObjectCust->isApproved) {
+            $canFillCustCalender  = false;
+        }
+    }
+    return view('rep-home', compact(['canFillCalender', 'canFillCustCalender']));
 })->name('rep-home'); // !@ DONE 
 
 Route::get('/fill-calender', function () {

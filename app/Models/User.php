@@ -49,6 +49,11 @@ class User extends Authenticatable
         return $this->hasMany(MonthApproval::class, 'user_id');
     }
 
+    public function custmonthapproval()
+    {
+        return $this->hasMany(CustMonthApproval::class, 'user_id');
+    }
+
     public function clients()
     {
         return $this->hasMany(Client::class, 'rep_id');

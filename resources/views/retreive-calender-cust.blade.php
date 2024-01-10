@@ -26,7 +26,8 @@
             @endforeach
 
             <li class="nav-item" role="presentation">
-                <a href="{{ route('approve-rep-plan', $repId) }}" class="btn btn-warning rounded-pill px-3 py-2 mx-3">✅</a>
+                <a href="{{ route('approve-cust-rep-plan', $repId) }}"
+                    class="btn btn-warning rounded-pill px-3 py-2 mx-3">✅</a>
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">

@@ -69,8 +69,8 @@
                         <td class="p-2">
                             <a href="{{ route('reset-user-get', $rep->id) }}">Reset Password</a>
                             <br>
-                            @if (\App\Models\User::find($rep->id)->monthapproval()->where('month', '01')->where('year', '2024')->first())
-                                @if (\App\Models\User::find($rep->id)->monthapproval()->where('month', '01')->where('year', '2024')->first()->isApproved)
+                            @if (\App\Models\User::find($rep->id)->monthapproval()->where('month', date('m'))->where('year', date('Y'))->first())
+                                @if (\App\Models\User::find($rep->id)->monthapproval()->where('month', date('m'))->where('year', date('Y'))->first()->isApproved)
                                 @else
                                     <a href="{{ route('retreive-rep-calender', $rep->id) }}">Approve Month Calender</a>
                                 @endif
@@ -78,7 +78,15 @@
                                 <a href="{{ route('retreive-rep-calender', $rep->id) }}">Approve Month Calender</a>
                             @endif
                             <br>
-                            <a href="{{ route('retreive-calender-get-cust', $rep->id) }}">Cust Month Calender</a>
+                            @if (\App\Models\User::find($rep->id)->custmonthapproval()->where('month', date('m'))->where('year', date('Y'))->first())
+                                @if (\App\Models\User::find($rep->id)->custmonthapproval()->where('month', date('m'))->where('year', date('Y'))->first()->isApproved)
+                                @else
+                                    <a href="{{ route('retreive-calender-get-cust', $rep->id) }}">Approve Cust
+                                        Calender</a>
+                                @endif
+                            @else
+                                <a href="{{ route('retreive-calender-get-cust', $rep->id) }}">Approve Cust Calender</a>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

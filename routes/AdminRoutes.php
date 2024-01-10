@@ -2,6 +2,7 @@
 
 use App\Models\Client;
 use App\Models\CustDailyProgress;
+use App\Models\CustMonthApproval;
 use App\Models\CustMonthPlan;
 use App\Models\DailyProgress;
 use App\Models\MonthApproval;
@@ -293,3 +294,27 @@ Route::post('/merge-post', function (Request $request) {
     $theClient->delete();
     return redirect()->back();
 })->name('merge-post');
+
+
+// -------------------------->
+Route::get('/approve-cust-rep-plan/{repId}', function (Request $request) {
+    $rep_id  = $request->repId;
+    $currentMonthNumber =  date('m');
+    $currentYear = date('Y');
+    $approvalObject  = CustMonthApproval::where('month', $currentMonthNumber)
+        ->where('year', $currentYear)
+        ->where('user_id', $rep_id)
+        ->first();
+    if ($approvalObject) {
+        $approvalObject->isApproved = true;
+        $approvalObject->save();
+    } else {
+        $approvalObject  = new CustMonthApproval();
+        $approvalObject->month = $currentMonthNumber;
+        $approvalObject->year = $currentYear;
+        $approvalObject->isApproved = true;
+        $approvalObject->user_id = $rep_id;
+        $approvalObject->save();
+    }
+    return redirect()->back()->with(['msg' => 'Approved Plan']);
+})->name('approve-cust-rep-plan');

@@ -80,8 +80,9 @@
                     <hr><br>
                     <div class="form-item">
                         <a href="{{ route('fill-calender-get-cust') }}"
-                            class="form-style btn btn-info rounded-pill px-3 w-100">Fill Current
-                            Month Plan(New Client)</a>
+                            class="form-style btn btn-info rounded-pill px-3 w-100">
+                            {{ $canFillCustCalender ? 'Fill Current Month Plan(New Client)' : '✅Plan Approved' }}
+                        </a>
                     </div>
 
                     <div class="form-item">
