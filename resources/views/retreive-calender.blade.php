@@ -71,8 +71,7 @@
                                             @php
                                                 $flag = false;
                                                 foreach ($matchingDummies as $dummy) {
-                                                    if ($dummy->date == $eachDayDate && $dummy->cardCode == $eachClient->CardCode) {
-                                                        // TODO : $dummy->company == $eachClient->COMP
+                                                    if ($dummy->date == $eachDayDate && $dummy->cardCode == $eachClient->CardCode && $dummy->company == $eachClient->COMP) {
                                                         $flag = true;
                                                         break;
                                                     }

@@ -149,8 +149,7 @@
                                         @php
                                             $matchingDateForClient = null;
                                             foreach ($dailyProgressRecord as $singleProgressRecord) {
-                                                if ($singleProgressRecord->cardCode == $eachClient->CardCode) {
-                                                     // TODO : $singleProgressRecord->company == $eachClient->COMP
+                                                if ($singleProgressRecord->cardCode == $eachClient->CardCode && $singleProgressRecord->company == $eachClient->COMP) {
                                                     $matchingDateForClient = $singleProgressRecord;
                                                     break;
                                                 }

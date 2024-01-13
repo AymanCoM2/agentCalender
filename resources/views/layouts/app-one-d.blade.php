@@ -149,7 +149,7 @@
                 switch (currentSymbol) {
                     case "_":
                         currentSymbol = "O"; // Clear the cell
-                        eachCell.style.backgroundColor = "white";
+                        eachCell.style.backgroundColor = "Orange";
                         eachCell.dataset.currentSymbol = currentSymbol;
                         saveCellData(
                             currentSymbol,

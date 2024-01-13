@@ -54,6 +54,7 @@ function sapDataForExport()
         ";
 
     $serverName = "jou.is-by.us";
+    $serverName = "jdry1.ifrserp.net";
     $databaseName = "TM";
     $uid = "ayman";
     $pwd = "admin@1234";

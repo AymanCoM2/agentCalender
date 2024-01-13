@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 
 function establishConnectionDB($inputQuery)
 {
-    $serverName = "jou.is-by.us";
+    // $serverName = "jou.is-by.us";
+    $serverName = "jdry1.ifrserp.net";
     $databaseName = "TM";
     $uid = "ayman";
     $pwd = "admin@1234";
@@ -95,16 +96,17 @@ Route::get('/fill-calender', function () {
     $currentMonthNumber =  date('m');
     $userAreaCode  = Auth::user()->areaCode;
     $sampleSqlQuery  = "
-        SELECT  'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+        SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
         FROM 
         TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
-        --WHERE T1.GroupName = '" . $userAreaCode . "'
+        WHERE T1.GroupName = '" . $userAreaCode . "'
 
         UNION ALL
 
-        SELECT  'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+        SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
         FROM 
         LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        WHERE T1.GroupName = '" . $userAreaCode . "'
         Order By T0.LicTradNum , T0.CardCode
         ";
 
@@ -165,13 +167,14 @@ Route::get('/record-one-day', function () {
         SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
         FROM 
         TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
-        --WHERE T1.GroupName = '" . $userAreaCode . "'
+        WHERE T1.GroupName = '" .  $userAreaCode . "'
 
         UNION ALL
 
         SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
         FROM 
         LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        WHERE T1.GroupName = '" .  $userAreaCode . "'
         Order By T0.LicTradNum , T0.CardCode
         ";
     $statement  = establishConnectionDB($sampleSqlQuery);

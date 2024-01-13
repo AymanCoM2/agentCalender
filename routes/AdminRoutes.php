@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Hash;
 
 function establishConnectionDB_web($inputQuery)
 {
-    $serverName = "jou.is-by.us";
+    // $serverName = "jou.is-by.us";
+    $serverName = "jdry1.ifrserp.net";
     $databaseName = "LB";
     $uid = "ayman";
     $pwd = "admin@1234";
@@ -79,17 +80,19 @@ Route::get('/retreive-rep-calender/{rep_id}', function (Request $request) {
     $repId  = $request->rep_id;
     $currentMonthNumber =  date('m'); // To seach For the Approval Model 
     $repUserObject  = User::find($repId);
+
     $sampleSqlQuery  = "
         SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
         FROM 
         TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
-        --WHERE T1.GroupName = '" .  $repUserObject->areaCode . "'
+        WHERE T1.GroupName = '" .  $repUserObject->areaCode . "'
 
         UNION ALL
 
         SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
         FROM 
         LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        WHERE T1.GroupName = '" .  $repUserObject->areaCode . "'
         Order By T0.LicTradNum , T0.CardCode
         ";
     $statement  = establishConnectionDB_web($sampleSqlQuery);
@@ -202,18 +205,19 @@ Route::get('/view-daily-progress', function (Request $request) {
 
             // & Now the Other Daily Progres 
             $sampleSqlQuery  = "
-                SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
-                FROM 
-                TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
-                --WHERE T1.GroupName = '" . $userAreaCode . "'
+        SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+        FROM 
+        TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        WHERE T1.GroupName = '" .  $userAreaCode . "'
 
-                UNION ALL
+        UNION ALL
 
-                SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
-                FROM 
-                LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
-                Order By T0.LicTradNum , T0.CardCode
-                ";
+        SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+        FROM 
+        LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        WHERE T1.GroupName = '" .  $userAreaCode . "'
+        Order By T0.LicTradNum , T0.CardCode
+        ";
             $statement  = establishConnectionDB_web($sampleSqlQuery);
             $clientsDataArrray  = [];
             while ($row = $statement->fetch(PDO::FETCH_OBJ)) {
@@ -228,25 +232,25 @@ Route::get('/view-daily-progress', function (Request $request) {
         if ($request->selected_rep) {
             $repUser = User::find($request->selected_rep);
             // ^ First Getting Custom Daily Progress
-
             $userAreaCode  = $repUser->areaCode;
             $clientsDataArrrayCust  = Client::where('rep_id', $repUser->id)->get(); // use Get to Get a Collection Array
             $dailyProgressRecordCust  = CustDailyProgress::where('user_id', $repUser->id)->where('date', $todaysDate)->get();
 
             // & Now the Other Daily Progres 
             $sampleSqlQuery  = "
-                SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
-                FROM 
-                TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
-                --WHERE T1.GroupName = '" . $userAreaCode . "'
+        SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+        FROM 
+        TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        WHERE T1.GroupName = '" . $userAreaCode . "'
 
-                UNION ALL
+        UNION ALL
 
-                SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
-                FROM 
-                LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
-                Order By T0.LicTradNum , T0.CardCode
-                ";
+        SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+        FROM 
+        LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
+        WHERE T1.GroupName = '" . $userAreaCode . "'
+        Order By T0.LicTradNum , T0.CardCode
+        ";
             $statement  = establishConnectionDB_web($sampleSqlQuery);
             $clientsDataArrray  = [];
             while ($row = $statement->fetch(PDO::FETCH_OBJ)) {
