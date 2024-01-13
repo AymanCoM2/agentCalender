@@ -6,10 +6,6 @@ Approve Cust :
     - Make One Approval For Each Plan  , Because Now Both Depend On One approval
 Map for grid letters "symbols" , So they Understand the Letters  
 ===================================
-[PROBLEM 1 :] 
-    I created a new users with Dummy "area Code" 
-    But he Gets Data In the Month Plan ?? How Come ? 
-===================================
 Super Admin Mails & admin Mail ???????? for the Command 
 kholood.emad@2coom.com
 NOTE : command File is ALREADY created, Only Need to Write the "handle" Function
@@ -21,10 +17,7 @@ Admin Resetting His Password in Some way ?
 Changing the Font For It and Make it Better 
 ======================
 navbar "sticky width 100%"
-[x -> F , P]
-[- -> O]
-[N For the daily table of clients only ]
-removing import route 
+removing import route
 ===================================
 ( DEPLOYMENT )
 1- Exporting Data as Excel Files 

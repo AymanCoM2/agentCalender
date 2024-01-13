@@ -163,6 +163,12 @@ Route::get('/record-one-day', function () {
     // $todaysDate  = "2024-01-02";
     $currentYear  = date('Y');
     $userAreaCode  = Auth::user()->areaCode;
+    $xedClients  = MonthPlan::where('date' ,$todaysDate)
+    ->where('user_id' ,Auth::user()->id )
+    ->where('state' , 'X')
+    ->pluck('cardCode')
+    ->toArray() ; 
+    
     $sampleSqlQuery  = "
         SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
         FROM 
@@ -183,7 +189,7 @@ Route::get('/record-one-day', function () {
         $clientsDataArrray[] = $row;
     }
     $dailyProgressRecord  = DailyProgress::where('user_id', Auth::user()->id)->where('date', $todaysDate)->get();
-    return view('one-day-calender', compact(['clientsDataArrray', 'dailyProgressRecord', 'todaysDate', 'currentMonthNumber']));
+    return view('one-day-calender', compact(['clientsDataArrray', 'dailyProgressRecord', 'todaysDate', 'currentMonthNumber','xedClients']));
 })->name('record-one-d-get'); // !@DONE 
 
 Route::post('/record-one-day', function (Request $request) {

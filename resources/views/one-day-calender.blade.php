@@ -34,7 +34,7 @@
                                 }
                             }
                         @endphp
-                        <div class="inner_cell"
+                        <div class="inner_cell {{ in_array($eachClient->CardCode, $xedClients) ? 'xed' : 'oed' }}"
                             data-current-symbo="{{ $matchingDateForClient ? $matchingDateForClient->state : '_' }}"
                             data-task-date="{{ $todaysDate }}" data-task-month="{{ $currentMonthNumber }}"
                             data-card-code="{{ $eachClient->CardCode }}" data-company-name="{{ $eachClient->COMP }}"

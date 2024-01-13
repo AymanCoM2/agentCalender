@@ -63,6 +63,8 @@
     <script src="{{ asset('js/toastify-js.js') }}"></script>
     <script>
         let dayCells = document.querySelectorAll(".inner_cell");
+        let xedCells = document.querySelectorAll(".xed");
+        let oedCells = document.querySelectorAll(".oed");
 
         dayCells.forEach((eachCell) => {
             let currentSymbol = eachCell.dataset.currentSymbo;
@@ -88,7 +90,114 @@
             }
         });
 
-        dayCells.forEach((eachCell) => {
+        xedCells.forEach((eachCell) => {
+            let currentSymbol = eachCell.dataset.currentSymbo;
+            let taskDate = eachCell.dataset.taskDate;
+            let taskMonth = eachCell.dataset.taskMonth;
+            let cardCode = eachCell.dataset.cardCode;
+            let companyName = eachCell.dataset.companyName;
+            let repId = eachCell.dataset.repId;
+
+            function saveCellData(
+                _symbolState,
+                _taskDate,
+                _taskMonth,
+                _cardCode,
+                _companyName,
+                _repId
+            ) {
+                $.ajaxSetup({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                    },
+                }); // Setting Up the Ajax # 1
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('record-one-d-post') }}",
+                    data: {
+                        symbol: _symbolState,
+                        dateOfTask: _taskDate,
+                        monthOfTask: _taskMonth,
+                        cardCode: _cardCode,
+                        companyName: _companyName,
+                        repId: _repId,
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        Toastify({
+                            text: "✔️",
+                            duration: 300,
+                            style: {
+                                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                            },
+                        }).showToast();
+                    },
+                    error: function(e) {
+                        Toastify({
+                            text: "Error !",
+                            duration: 3000,
+                            style: {
+                                background: "linear-gradient(to left, #563474, #96c93d)",
+                            },
+                        }).showToast();
+                        console.log(e);
+                    }, // End of Error Option
+                }); // End Of Ajax call
+            }
+
+            eachCell.addEventListener("click", function() {
+                // Toggle through symbols
+                switch (currentSymbol) {
+                    case "_":
+                        currentSymbol = "F"; // Change to "F" on the next click
+                        eachCell.style.backgroundColor = "red";
+                        eachCell.dataset.currentSymbol = currentSymbol;
+                        saveCellData(
+                            currentSymbol,
+                            taskDate,
+                            taskMonth,
+                            cardCode,
+                            companyName,
+                            repId
+                        );
+                        break;
+                    case "F":
+                        currentSymbol = "P"; // Change to "P" on the next click
+                        eachCell.style.backgroundColor = "green";
+                        eachCell.dataset.currentSymbol = currentSymbol;
+                        saveCellData(
+                            currentSymbol,
+                            taskDate,
+                            taskMonth,
+                            cardCode,
+                            companyName,
+                            repId
+                        );
+                        break;
+                    case "P":
+                        currentSymbol = "_"; // Change to "N" on the next click
+                        eachCell.style.backgroundColor = "white";
+                        eachCell.dataset.currentSymbol = currentSymbol;
+                        saveCellData(
+                            currentSymbol,
+                            taskDate,
+                            taskMonth,
+                            cardCode,
+                            companyName,
+                            repId
+                        );
+                        break;
+                    default:
+                        break;
+                }
+                if (currentSymbol) {
+                    eachCell.innerText = currentSymbol;
+                }
+            });
+        });
+
+        oedCells.forEach((eachCell) => {
             let currentSymbol = eachCell.dataset.currentSymbo;
             let taskDate = eachCell.dataset.taskDate;
             let taskMonth = eachCell.dataset.taskMonth;
@@ -161,46 +270,7 @@
                         );
                         break;
                     case "O":
-                        currentSymbol = "F"; // Change to "F" on the next click
-                        eachCell.style.backgroundColor = "red";
-                        eachCell.dataset.currentSymbol = currentSymbol;
-                        saveCellData(
-                            currentSymbol,
-                            taskDate,
-                            taskMonth,
-                            cardCode,
-                            companyName,
-                            repId
-                        );
-                        break;
-                    case "F":
-                        currentSymbol = "P"; // Change to "P" on the next click
-                        eachCell.style.backgroundColor = "green";
-                        eachCell.dataset.currentSymbol = currentSymbol;
-                        saveCellData(
-                            currentSymbol,
-                            taskDate,
-                            taskMonth,
-                            cardCode,
-                            companyName,
-                            repId
-                        );
-                        break;
-                    case "P":
-                        currentSymbol = "N"; // Change to "N" on the next click
-                        eachCell.style.backgroundColor = "blue";
-                        eachCell.dataset.currentSymbol = currentSymbol;
-                        saveCellData(
-                            currentSymbol,
-                            taskDate,
-                            taskMonth,
-                            cardCode,
-                            companyName,
-                            repId
-                        );
-                        break;
-                    case "N":
-                        currentSymbol = "_"; // Change to "" (clear) on the next click
+                        currentSymbol = "_"; // Change to "F" on the next click
                         eachCell.style.backgroundColor = "white";
                         eachCell.dataset.currentSymbol = currentSymbol;
                         saveCellData(
