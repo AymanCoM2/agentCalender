@@ -95,14 +95,14 @@ Route::get('/fill-calender', function () {
     $currentMonthNumber =  date('m');
     $userAreaCode  = Auth::user()->areaCode;
     $sampleSqlQuery  = "
-        SELECT 'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+        SELECT  'TM' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
         FROM 
         TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
         --WHERE T1.GroupName = '" . $userAreaCode . "'
 
         UNION ALL
 
-        SELECT 'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
+        SELECT  'LB' 'COMP', T0.LicTradNum ,T1.GroupName,T0.CardName , T0.CardCode
         FROM 
         LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG T1 ON T0.GroupCode  = T1.GroupCode
         Order By T0.LicTradNum , T0.CardCode
@@ -126,7 +126,11 @@ Route::post("/post-cell-data", function (Request $request) {
     $month =  $currentMonthNumber;
     $cardCode =  $request->cardCode;
     $repId  =  $request->repId;
-    $doesPlanExist = MonthPlan::where('cardCode', $cardCode)->where('date', $date)->where('user_id', Auth::user()->id)->first();
+    $companyName = $request->companyName;
+    $doesPlanExist = MonthPlan::where('cardCode', $cardCode)
+        ->where('date', $date)
+        ->where('company', $companyName)
+        ->where('user_id', Auth::user()->id)->first();
     if ($doesPlanExist) {
         $doesPlanExist->month = $month;
         $doesPlanExist->year =  date('Y');
@@ -134,6 +138,7 @@ Route::post("/post-cell-data", function (Request $request) {
         $doesPlanExist->user_id = Auth::user()->id;
         $doesPlanExist->state = $symbol;
         $doesPlanExist->cardCode = $cardCode;
+        $doesPlanExist->company = $companyName;
         $doesPlanExist->save();
         return response()->json(['key' => "Just-Updated"]);
     } else {
@@ -144,6 +149,7 @@ Route::post("/post-cell-data", function (Request $request) {
         $newPlanObject->user_id = Auth::user()->id;
         $newPlanObject->state = $symbol;
         $newPlanObject->cardCode = $cardCode;
+        $newPlanObject->company = $companyName;
         $newPlanObject->save();
         return response()->json(['key' => "Newly-Created"]);
     }
@@ -186,7 +192,11 @@ Route::post('/record-one-day', function (Request $request) {
     $month =  $currentMonthNumber;
     $cardCode =  $request->cardCode;
     $repId  =  $request->repId;
-    $doesDailyExist = DailyProgress::where('cardCode', $cardCode)->where('date', $date)->where('user_id', Auth::user()->id)->first();
+    $companyName = $request->companyName;
+    $doesDailyExist = DailyProgress::where('cardCode', $cardCode)
+    ->where('date', $date)
+    ->where('company', $companyName)
+    ->where('user_id', Auth::user()->id)->first();
     if ($doesDailyExist) {
         $doesDailyExist->month = $month;
         $doesDailyExist->year =  date('Y');
@@ -194,6 +204,7 @@ Route::post('/record-one-day', function (Request $request) {
         $doesDailyExist->user_id = Auth::user()->id;
         $doesDailyExist->state = $symbol;
         $doesDailyExist->cardCode = $cardCode;
+        $doesDailyExist->company = $companyName;
         $doesDailyExist->save();
         return response()->json(['key' => "Just-Updated"]);
     } else {
@@ -204,6 +215,7 @@ Route::post('/record-one-day', function (Request $request) {
         $newDailyObject->user_id = Auth::user()->id;
         $newDailyObject->state = $symbol;
         $newDailyObject->cardCode = $cardCode;
+        $newDailyObject->company = $companyName; // ! TODO : Check All Have Updated For Company 
         $newDailyObject->save();
         return response()->json(['key' => "Newly-Created"]);
     }

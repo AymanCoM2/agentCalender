@@ -38,9 +38,11 @@
                             <tr>
                                 <th scope="col">Client Code</th>
                                 <th scope="col">Client Name</th>
+                                <th scope="col">Company</th>
                                 <th scope="col" colspan="7">Month</th>
                             </tr>
                             <tr>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <!-- Repeat for the rest of the days -->
@@ -49,6 +51,7 @@
                                 @endforeach
                             </tr>
                             <tr>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 @foreach ($daysOfWeekArray as $dateOfDay => $dayName)
@@ -61,6 +64,7 @@
                                 <tr>
                                     <td>{{ $eachClient->CardCode }}</td>
                                     <td>{{ $eachClient->CardName }}</td>
+                                    <td>{{ $eachClient->COMP }}</td>
                                     <!-- Repeat for the rest of the days -->
                                     @foreach ($daysOfWeekArray as $eachDayDate => $eachDateName)
                                         <td>
@@ -68,6 +72,7 @@
                                                 $flag = false;
                                                 foreach ($matchingDummies as $dummy) {
                                                     if ($dummy->date == $eachDayDate && $dummy->cardCode == $eachClient->CardCode) {
+                                                        // TODO : $dummy->company == $eachClient->COMP
                                                         $flag = true;
                                                         break;
                                                     }

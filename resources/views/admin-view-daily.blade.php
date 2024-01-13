@@ -129,9 +129,11 @@
                             <tr>
                                 <th scope="col">Client Code</th>
                                 <th scope="col">Client Name</th>
+                                <th scope="col">Company</th>
                                 <th scope="col" colspan="">Day</th>
                             </tr>
                             <tr>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th>{{ $todaysDate }}</th>
@@ -142,11 +144,13 @@
                                 <tr>
                                     <td>{{ $eachClient->CardCode }}</td>
                                     <td>{{ $eachClient->CardName }}</td>
+                                    <td>{{ $eachClient->COMP }}</td>
                                     <td>
                                         @php
                                             $matchingDateForClient = null;
                                             foreach ($dailyProgressRecord as $singleProgressRecord) {
                                                 if ($singleProgressRecord->cardCode == $eachClient->CardCode) {
+                                                     // TODO : $singleProgressRecord->company == $eachClient->COMP
                                                     $matchingDateForClient = $singleProgressRecord;
                                                     break;
                                                 }

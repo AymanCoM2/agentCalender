@@ -20,16 +20,19 @@
                         <tr>
                             <th scope="col">Client Code</th>
                             <th scope="col">Client Name</th>
+                            <th scope="col">Company</th>
                             <th scope="col" colspan="7">Month : {{ 'JAN_TEST' }}</th>
                         </tr>
                         <tr>
                             <th class="thick-border"></th>
+                            <th></th>
                             <th></th>
                             @foreach ($daysOfWeekArray as $dateOfDay => $dayName)
                                 <th>{{ $dayName }}</th>
                             @endforeach
                         </tr>
                         <tr>
+                            <th></th>
                             <th></th>
                             <th></th>
                             @foreach ($daysOfWeekArray as $dateOfDay => $dayName)
@@ -42,12 +45,13 @@
                             <tr>
                                 <td>{{ $eachClient->CardCode }}</td>
                                 <td> {{ $eachClient->CardName }} </td>
+                                <td> {{ $eachClient->COMP }} </td>
                                 @foreach ($daysOfWeekArray as $eachDayDate => $eachDateName)
                                     <td>
                                         @php
                                             $flag = false;
                                             foreach ($matchingMonthPlan as $dummyMatchPlan) {
-                                                if ($dummyMatchPlan->date == $eachDayDate && $dummyMatchPlan->cardCode == $eachClient->CardCode) {
+                                                if ($dummyMatchPlan->date == $eachDayDate && $dummyMatchPlan->cardCode == $eachClient->CardCode && $dummyMatchPlan->company == $eachClient->COMP) {
                                                     $flag = true;
                                                     break;
                                                 }
@@ -58,6 +62,7 @@
                                             data-task-date="{{ $eachDayDate }}"
                                             data-task-month="{{ $currentMonthNumber }}"
                                             data-card-code="{{ $eachClient->CardCode }}"
+                                            data-company-name="{{ $eachClient->COMP }}"
                                             data-rep-id="{{ Auth::user()->id }}">
                                             {{ $flag ? $dummyMatchPlan->state : '_' }}</div>
                                     </td>

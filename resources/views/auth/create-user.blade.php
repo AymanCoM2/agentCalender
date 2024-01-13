@@ -76,7 +76,12 @@
                                     autocomplete="off" />
                             </div>
                             <div class="form-item">
-                                <label for="userCode">Code - Email For the User </label>
+                                <label for="areaCode">Area Code</label>
+                                <input type="text" name="areaCode" id="areaCode" class="form-style"
+                                    autocomplete="off" />
+                            </div>
+                            <div class="form-item">
+                                <label for="userCode">Email For the User </label>
                                 <input type="text" name="userCode" id="userCode" class="form-style"
                                     autocomplete="off" />
                             </div>

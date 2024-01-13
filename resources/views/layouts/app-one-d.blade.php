@@ -93,6 +93,7 @@
             let taskDate = eachCell.dataset.taskDate;
             let taskMonth = eachCell.dataset.taskMonth;
             let cardCode = eachCell.dataset.cardCode;
+            let companyName = eachCell.dataset.companyName;
             let repId = eachCell.dataset.repId;
 
             function saveCellData(
@@ -100,6 +101,7 @@
                 _taskDate,
                 _taskMonth,
                 _cardCode,
+                _companyName,
                 _repId
             ) {
                 $.ajaxSetup({
@@ -116,6 +118,7 @@
                         dateOfTask: _taskDate,
                         monthOfTask: _taskMonth,
                         cardCode: _cardCode,
+                        companyName: _companyName,
                         repId: _repId,
                     },
                     success: function(data) {
@@ -153,21 +156,10 @@
                             taskDate,
                             taskMonth,
                             cardCode,
+                            companyName,
                             repId
                         );
                         break;
-                    // case "X":
-                    //     currentSymbol = "O"; // Clear the cell
-                    //     eachCell.style.backgroundColor = "Orange";
-                    //     eachCell.dataset.currentSymbol = currentSymbol;
-                    //     saveCellData(
-                    //         currentSymbol,
-                    //         taskDate,
-                    //         taskMonth,
-                    //         cardCode,
-                    //         repId
-                    //     );
-                    //     break;
                     case "O":
                         currentSymbol = "F"; // Change to "F" on the next click
                         eachCell.style.backgroundColor = "red";
@@ -177,6 +169,7 @@
                             taskDate,
                             taskMonth,
                             cardCode,
+                            companyName,
                             repId
                         );
                         break;
@@ -189,6 +182,7 @@
                             taskDate,
                             taskMonth,
                             cardCode,
+                            companyName,
                             repId
                         );
                         break;
@@ -201,6 +195,7 @@
                             taskDate,
                             taskMonth,
                             cardCode,
+                            companyName,
                             repId
                         );
                         break;
@@ -213,6 +208,7 @@
                             taskDate,
                             taskMonth,
                             cardCode,
+                            companyName,
                             repId
                         );
                         break;

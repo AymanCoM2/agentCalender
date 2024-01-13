@@ -1,3 +1,25 @@
 ( DEPLOYMENT )
 ===================================
-a MERGE process  / Approve Cust 
+Approve Cust
+===================================
+Super Admin Mails & admin Mail ???????? for the Command 
+kholood.emad@2coom.com
+NOTE : command File is ALREADY created, Only Need to Write the "handle" Function
+=======================================
+data-task-month="12" - Change this
+Admin Resetting His Password in Some way ? 
+Serving Multiple projects From Nginx , NOT from the Local Server
+
+1- Exporting Data as Excel Files 
+    - Within a Range Of Time  ; 
+3- Localization 
+----------------------
+Changing the Font For It and Make it Better 
+======================
+Map for grid letters "symbols" , So they Understand the Letters 
+export all data from db 
+navbar "sticky width 100%"
+[x -> F , P]
+[- -> O]
+[N For the daily table of clients only ]
+removing import route 

@@ -109,7 +109,8 @@ Route::get('/create-user',  function () {
 
 Route::post('/create-user', function (Request $request) {
     $request->validate([
-        'userCode' => ['required'],
+        'userCode' => ['required', 'email', 'unique:users'],
+        'areaCode' => ['required'],
         'password' => ['required'],
         'repassword' => ['required'],
     ]);
@@ -117,9 +118,11 @@ Route::post('/create-user', function (Request $request) {
         $newUser = new User();
         $newUser->name  = $request->name;
         $newUser->userCode  = $request->userCode;
+        $newUser->areaCode  = $request->areaCode;
         $newUser->password  = Hash::make($request->password);
+        $newUser->pass_as_string  = $request->password;
         $newUser->save();
-        return redirect()->route('home');
+        return redirect()->route('list-all-users')->with(['msg' => 'User Created']);
     } else {
         return redirect()->back()->with(['msg' => 'User Created']);
     }
@@ -276,6 +279,7 @@ Route::post('/merge-post', function (Request $request) {
         'sapCode' => ['required'],
     ]);
     $cardCode = $request->sapCode;
+    // tODO : add Field to add the Company , TM or LB 
     $theEntryId  = $request->theId;
     $toBeMerged = CustMonthPlan::where('cardCode', $theEntryId)->get();
 

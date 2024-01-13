@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string("userCode"); // Could Be Email , Phone Or anything to log with
+            $table->string("userCode")->unique(); // Only Email 
             $table->string("areaCode");
             $table->string('userType')->default('rep'); // rep VS admin
             $table->string('password');

@@ -84,6 +84,11 @@
                         <a href="{{ route('view-daily-progress') }}"
                             class="form-style btn btn-info rounded-pill px-3 w-100">View Daily Progress</a>
                     </div>
+                    <hr>
+                    <div class="form-item">
+                        <a href="{{ route('export-data') }}"
+                            class="form-style btn btn-success rounded-pill px-3 w-100">Export Excel Data</a>
+                    </div>
                 </div>
             </div>
         </div>

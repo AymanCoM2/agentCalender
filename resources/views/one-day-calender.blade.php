@@ -8,9 +8,11 @@
             <tr>
                 <th scope="col">Client Code</th>
                 <th scope="col">Client Name</th>
+                <th scope="col">Company</th>
                 <th scope="col" colspan="">Day</th>
             </tr>
             <tr>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th>{{ $todaysDate }}</th>
@@ -21,11 +23,12 @@
                 <tr>
                     <td>{{ $eachClient->CardCode }}</td>
                     <td>{{ $eachClient->CardName }}</td>
+                    <td>{{ $eachClient->COMP }}</td>
                     <td>
                         @php
                             $matchingDateForClient = null;
                             foreach ($dailyProgressRecord as $singleProgressRecord) {
-                                if ($singleProgressRecord->cardCode == $eachClient->CardCode) {
+                                if ($singleProgressRecord->cardCode == $eachClient->CardCode && $singleProgressRecord->company == $eachClient->COMP) {
                                     $matchingDateForClient = $singleProgressRecord;
                                     break;
                                 }
@@ -34,7 +37,8 @@
                         <div class="inner_cell"
                             data-current-symbo="{{ $matchingDateForClient ? $matchingDateForClient->state : '_' }}"
                             data-task-date="{{ $todaysDate }}" data-task-month="{{ $currentMonthNumber }}"
-                            data-card-code="{{ $eachClient->CardCode }}" data-rep-id="{{ Auth::user()->id }}">
+                            data-card-code="{{ $eachClient->CardCode }}" data-company-name="{{ $eachClient->COMP }}"
+                            data-rep-id="{{ Auth::user()->id }}">
                             {{ $matchingDateForClient ? $matchingDateForClient->state : '_' }}</div>
                     </td>
                 </tr>

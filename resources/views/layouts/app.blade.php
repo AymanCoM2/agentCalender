@@ -65,14 +65,6 @@
     <script src="{{ asset('js/toastify-js.js') }}"></script>
     <script>
         let dayCells = document.querySelectorAll(".inner_cell");
-        // let symbolObject = {
-        //   X: "target",
-        //   O: "onrandom",
-        //   F: "failed",
-        //   P: "planned",
-        //   N: "new",
-        //   _: "_",
-        // };
         dayCells.forEach((eachCell) => {
             let currentSymbol = eachCell.dataset.currentSymbo;
             switch (currentSymbol) {
@@ -102,6 +94,7 @@
             let taskDate = eachCell.dataset.taskDate;
             let taskMonth = eachCell.dataset.taskMonth;
             let cardCode = eachCell.dataset.cardCode;
+            let companyName = eachCell.dataset.companyName;
             let repId = eachCell.dataset.repId;
 
             function saveCellData(
@@ -109,6 +102,7 @@
                 _taskDate,
                 _taskMonth,
                 _cardCode,
+                _companyName,
                 _repId
             ) {
                 $.ajaxSetup({
@@ -125,6 +119,7 @@
                         dateOfTask: _taskDate,
                         monthOfTask: _taskMonth,
                         cardCode: _cardCode,
+                        companyName: _companyName,
                         repId: _repId,
                     },
                     success: function(data) {
@@ -162,6 +157,7 @@
                             taskDate,
                             taskMonth,
                             cardCode,
+                            companyName,
                             repId
                         );
                         break;
@@ -174,57 +170,10 @@
                             taskDate,
                             taskMonth,
                             cardCode,
+                            companyName,
                             repId
                         );
                         break;
-                        // case "O":
-                        //     currentSymbol = "F"; // Change to "F" on the next click
-                        //     eachCell.style.backgroundColor = "red";
-                        //     eachCell.dataset.currentSymbol = currentSymbol;
-                        //     saveCellData(
-                        //         currentSymbol,
-                        //         taskDate,
-                        //         taskMonth,
-                        //         cardCode,
-                        //         repId
-                        //     );
-                        //     break;
-                        // case "F":
-                        //     currentSymbol = "P"; // Change to "P" on the next click
-                        //     eachCell.style.backgroundColor = "green";
-                        //     eachCell.dataset.currentSymbol = currentSymbol;
-                        //     saveCellData(
-                        //         currentSymbol,
-                        //         taskDate,
-                        //         taskMonth,
-                        //         cardCode,
-                        //         repId
-                        //     );
-                        //     break;
-                        // case "P":
-                        //     currentSymbol = "N"; // Change to "N" on the next click
-                        //     eachCell.style.backgroundColor = "blue";
-                        //     eachCell.dataset.currentSymbol = currentSymbol;
-                        //     saveCellData(
-                        //         currentSymbol,
-                        //         taskDate,
-                        //         taskMonth,
-                        //         cardCode,
-                        //         repId
-                        //     );
-                        //     break;
-                        // case "N":
-                        //     currentSymbol = "_"; // Change to "" (clear) on the next click
-                        //     eachCell.style.backgroundColor = "white";
-                        //     eachCell.dataset.currentSymbol = currentSymbol;
-                        //     saveCellData(
-                        //         currentSymbol,
-                        //         taskDate,
-                        //         taskMonth,
-                        //         cardCode,
-                        //         repId
-                        //     );
-                        //     break;
                     default:
                         break;
                 }

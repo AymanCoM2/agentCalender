@@ -1,16 +1,20 @@
 <?php
 
+use App\Models\MonthPlan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
-
+use Rap2hpoutre\FastExcel\FastExcel;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 Route::group(['middleware' => ['needLog', 'normalAdmin']], __DIR__ . '/ImportingRoutes.php'); // * DONE 
 Route::group(['middleware' => ['needLog', 'representative']], __DIR__ . '/RepRoutes.php');  // * DONE 
 Route::group(['middleware' => ['needLog']], __DIR__ . '/AuthRoutes.php');  // * DONE 
 Route::group(['middleware' => ['needLog', 'normalAdmin']], __DIR__ . '/AdminRoutes.php');  // * DONE 
+Route::group(['middleware' => ['needLog', 'normalAdmin']], __DIR__ . '/ExportRoutes.php');  // * DONE 
 
 Route::get('/login', function () {
     if (Auth::check()) {
@@ -49,3 +53,7 @@ Route::post('/login', function (Request $request) {
 Route::get('/', function () {
     return redirect()->route('login-get');
 })->name('home');
+
+// !--------------------------------------------->>
+// !--------------------------------------------->>
+
