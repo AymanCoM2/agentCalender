@@ -256,7 +256,7 @@ Route::get('/fill-calender-cust', function () {
     $weeksArray = cutMonthArrayIntoWeeks($daysArray);
     $matchingMonthPlan  = CustMonthPlan::where('user_id', Auth::user()->id)->where('month', $currentMonthNumber)->get(); // TODO  : This Needs To be Changed To "Cust Month Plan " 
     return view('fill-calender-cust', compact(['weeksArray', 'clientsDataArrray', 'matchingMonthPlan', 'currentMonthNumber']));
-})->name('fill-calender-get-cust')->middleware('alreadyApproved'); // !@DONE 
+})->name('fill-calender-get-cust')->middleware('alreadyApprovedcust'); // !@DONE 
 
 
 Route::post("/post-cell-data-cust", function (Request $request) {

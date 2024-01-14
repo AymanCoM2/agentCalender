@@ -68,6 +68,7 @@ class Kernel extends HttpKernel
         'needLog' => \App\Http\Middleware\NeedLog::class,
         'representative' => \App\Http\Middleware\Representative::class,
         'alreadyApproved' => \App\Http\Middleware\AlreadyApproved::class,
+        'alreadyApprovedcust' => \App\Http\Middleware\AlreadyApprovedCust::class,
         'normalAdmin' => \App\Http\Middleware\NormalAdmin::class,
         'superAdmin' => \App\Http\Middleware\SuperAdmin::class,
     ];

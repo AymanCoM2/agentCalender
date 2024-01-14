@@ -1,19 +1,15 @@
-    - Polish the Design For the Tables and Navbar 
-    - Put the Month Name and Stuff Like this 
-    - Localization Maybe
-    navbar "sticky width 100%"
-    Changing the Font For It and Make it Better 
-
-Approve Cust :
-    - Make One Approval For Each Plan  , Because Now Both Depend On One approval
-Map for grid letters "symbols" [Modal], So they Understand the Letters  
-=======================================
-data-task-month="12":
-    - Review the (View) Files , Make Sure NO STATIC DATA OF DATES 
-----------------------
 ( DEPLOYMENT )
 1- Exporting Data as Excel Files 
     - Within a Range Of Time
     Super Admin Mails
     Admin Resetting His Password in Some way ?
     removing import route
+    Merging Process + Company Name 
+===========================
+- Polish the Design /navbar / Font 
+- Put the Month Name
+===========================
+Map for grid letters "symbols" [Modal], So they Understand the Letters  
+======================
+Review the (View) Files , Make Sure NO STATIC DATA OF DATES 
+----------------------
