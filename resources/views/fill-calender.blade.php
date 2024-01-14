@@ -15,7 +15,7 @@
         @foreach ($weeksArray as $weekNumber => $daysOfWeekArray)
             <div class="tab-pane {{ $weekNumber == 'week_1' ? 'show active' : '' }} fade" id="{{ $weekNumber }}"
                 role="tabpanel" tabindex="0">
-                <table class="table table-responsive table-striped overflow-scroll" id="myTable">
+                <table class="table  table-striped overflow-scroll" id="myTable">
                     <thead>
                         <tr>
                             <th scope="col">Client Code</th>

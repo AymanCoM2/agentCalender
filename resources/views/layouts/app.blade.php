@@ -13,12 +13,12 @@
 
 <style>
     thead {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 0;
-        z-index: 3;
-        background: white;
-        border: 1px solid black;
+        position: -webkit-sticky !important  ; 
+        position: sticky !important  ; 
+        top: 0 !important  ; 
+        z-index: 3 !important  ; 
+        background: white !important  ; 
+        border: 1px solid black !important  ; 
     }
 </style>
 

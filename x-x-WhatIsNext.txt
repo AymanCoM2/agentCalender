@@ -1,24 +1,19 @@
-For the Client: 
     - Polish the Design For the Tables and Navbar 
     - Put the Month Name and Stuff Like this 
-    - Localization Maybe  ; 
+    - Localization Maybe
+    navbar "sticky width 100%"
+    Changing the Font For It and Make it Better 
+
 Approve Cust :
     - Make One Approval For Each Plan  , Because Now Both Depend On One approval
-Map for grid letters "symbols" , So they Understand the Letters  
-===================================
-Super Admin Mails & admin Mail ???????? for the Command 
-kholood.emad@2coom.com
-NOTE : command File is ALREADY created, Only Need to Write the "handle" Function
+Map for grid letters "symbols" [Modal], So they Understand the Letters  
 =======================================
 data-task-month="12":
     - Review the (View) Files , Make Sure NO STATIC DATA OF DATES 
-Admin Resetting His Password in Some way ? 
 ----------------------
-Changing the Font For It and Make it Better 
-======================
-navbar "sticky width 100%"
-removing import route
-===================================
 ( DEPLOYMENT )
 1- Exporting Data as Excel Files 
-    - Within a Range Of Time  ; 
+    - Within a Range Of Time
+    Super Admin Mails
+    Admin Resetting His Password in Some way ?
+    removing import route
