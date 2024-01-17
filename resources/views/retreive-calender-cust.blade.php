@@ -79,6 +79,9 @@
                                                     <form action="{{ route('merge-post') }}" method="post">
                                                         @csrf
                                                         Sap Code:<input type="text" name="sapCode">
+                                                        <br>
+                                                        Company:<input type="text" name="companyCode">
+                                                        <br>
                                                         <input type="hidden" name="theId" value="{{ $eachClient->id }}">
                                                         <button type="submit" class="btn btn-primary">Merge</button>
                                                     </form>

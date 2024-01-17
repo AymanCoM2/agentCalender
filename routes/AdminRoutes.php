@@ -281,15 +281,18 @@ Route::get('/retreive-calender-cust/{rep_id}', function (Request $request) {
 Route::post('/merge-post', function (Request $request) {
     $request->validate([
         'sapCode' => ['required'],
+        'companyCode' => ['required'],
     ]);
     $cardCode = $request->sapCode;
-    // tODO : add Field to add the Company , TM or LB 
+    $companyCode = $request->companyCode;
     $theEntryId  = $request->theId;
-    $toBeMerged = CustMonthPlan::where('cardCode', $theEntryId)->get();
+    $toBeMerged = CustMonthPlan::where('cardCode', $theEntryId)
+        ->get();
 
     foreach ($toBeMerged as $eachRecord) {
         $mp = new MonthPlan();
         $mp->month  = $eachRecord->month;
+        $mp->company = $companyCode; // ! This is the Important Part 
         $mp->year  = $eachRecord->year;
         $mp->date  = $eachRecord->date;
         $mp->cardCode  = $cardCode; // ! This is the Important Part 
