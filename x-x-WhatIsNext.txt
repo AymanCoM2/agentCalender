@@ -1,15 +1,4 @@
-Exporting Data as Excel Files 
-    - Within a Range Of Time
-    Super Admin Mails
-    Admin Resetting His Password in Some way ?
-    removing import route
-    Merging Process + Company Name 
-===========================
-- Polish the Design /navbar / Font 
-- Put the Month Name
-===========================
+Merging Process + Company Name 
+======================
 Map for grid letters "symbols" [Modal], So they Understand the Letters  
 ======================
-Review the (View) Files , Make Sure NO STATIC DATA OF DATES 
-----------------------
-( DEPLOYMENT )

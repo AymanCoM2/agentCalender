@@ -21,7 +21,7 @@
                             <th scope="col">Client Code</th>
                             <th scope="col">Client Name</th>
                             <th scope="col">Company</th>
-                            <th scope="col" colspan="7">Month : {{ 'JAN_TEST' }}</th>
+                            <th scope="col" colspan="7">Month : {{ \Carbon\Carbon::now()->format('M') }}</th>
                         </tr>
                         <tr>
                             <th class="thick-border"></th>

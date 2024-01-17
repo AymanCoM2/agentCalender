@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login-style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fab.css') }}">
-    <title>Admin Home Page</title>
+    <title>Daily Progress</title>
 </head>
 
 <body>
@@ -36,6 +36,7 @@
                                         <a class="dropdown-item" href="#" id="loggingOut">Log Out</a>
                                     </form>
                                 </li>
+
                             </ul>
                         </li>
                     @endauth
@@ -43,66 +44,61 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid">
+
+    <div class="container">
         @if (session()->has('msg'))
             <div class="alert alert-success">
                 {{ session('msg') }}
             </div>
         @endif
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12 mx-auto mt-5">
-                <div id="form" class="p-4">
-                    <div class="logo">
-                        <h1 class="text-center head">Admin</h1>
-                    </div>
-                    <div class="form-item">
-                        <a href="{{ route('list-all-users') }}"
-                            class="form-style btn btn-primary rounded-pill px-3 w-100">List all Users</a>
-                    </div>
-
-                    <div class="form-item">
-                        <a href="{{ route('create-user-get') }}"
-                            class="form-style btn btn-primary rounded-pill px-3 w-100">Create New User</a>
-                    </div>
-
-                    <div class="form-item">
-                        <a href="{{ route('import-reps-get') }}"
-                            class="form-style disabled btn btn-primary rounded-pill px-3 w-100">Import Excel File</a>
-                    </div>
-
-                    <hr>
-                    <div class="form-item">
-                        <a href="{{ route('view-daily-progress') }}"
-                            class="form-style btn btn-info rounded-pill px-3 w-100">View Daily Progress</a>
-                    </div>
-                    <hr>
-                    <div class="form-item">
-                        <a href="{{ route('export-data') }}"
-                            class="form-style btn btn-success rounded-pill px-3 w-100">Export Excel Data</a>
-                    </div>
+        <br>
+        <form action="{{ route('export-post') }}" method="post">
+            @csrf
+            <div class="row">
+                <div class="col-5">
+                    <select class="form-select" name="selected_rep">
+                        <option selected value="">Select User</option>
+                        @foreach ($allReps as $rep)
+                            <option value="{{ $rep->id }}"
+                                {{ Request::input('selected_rep') == $rep->id ? 'selected' : '' }}>{{ $rep->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-2">
+                    <select class="form-select" name="selected_year">
+                        @foreach ($allYears as $year)
+                            <option value="{{ $year }}" selected>{{ $year }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-3">
+                    <select class="form-select" aria-label="" name="selected_month">
+                        <option selected value="01">Jan</option>
+                        <option value="02">Feb</option>
+                        <option value="03">Mar</option>
+                        <option value="04">Apr</option>
+                        <option value="05">May</option>
+                        <option value="06">Jun</option>
+                        <option value="07">Jul</option>
+                        <option value="08">Aug</option>
+                        <option value="09">Sep</option>
+                        <option value="10">Oct</option>
+                        <option value="11">Nov</option>
+                        <option value="12">Dec</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <input type="submit" class="btn btn-success rounded-pill">
                 </div>
             </div>
-        </div>
+        </form>
+        <br>
+        {{-- IF daily Progress Sent ? Render it  --}}
     </div>
+
     <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script>
-        let loggoutBtn = document.getElementById("loggingOut");
-        let loggoutForm = document.getElementById("littleForm");
-        loggoutBtn.addEventListener('click', function(eventos) {
-            eventos.preventDefault();
-            loggoutForm.submit();
-        });
-    </script>
 </body>
 
 </html>

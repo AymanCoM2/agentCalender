@@ -21,7 +21,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Client Name</th>
-                            <th scope="col" colspan="7">Month</th>
+                            <th scope="col" colspan="7">Month : {{ \Carbon\Carbon::now()->format('M') }}</th>
                         </tr>
                         <tr>
                             <th></th>
