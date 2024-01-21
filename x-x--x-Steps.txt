@@ -1,3 +1,6 @@
 1- php artisan migrate:fresh 
 
 2- php artisan app:create-admins
+
+
+Export Daily With the Monthly Calender 

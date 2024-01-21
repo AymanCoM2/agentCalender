@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Rap2hpoutre\FastExcel\FastExcel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Rap2hpoutre\FastExcel\SheetCollection;
 
 function getMonthDates($monthNumber, $yearNumber)
 {
@@ -74,6 +75,8 @@ Route::get('/export-data', function (Request $request) {
     return view('export-page-get', compact(['allReps', 'allYears']));
 })->name('export-data'); // * OK 
 
+
+
 Route::post('/export-data-post', function (Request $request) {
     $request->validate([
         'selected_rep' => ['required'],
@@ -83,16 +86,32 @@ Route::post('/export-data-post', function (Request $request) {
     $userAreaCode = User::find($request->selected_rep)->areaCode;
     $userName = User::find($request->selected_rep)->name;
     $motherArray  = [];
+    $motherDailyArray  = [];
     $keysArray = getMonthDates($request->selected_month, $request->selected_year);
     $sapData  = sapDataForExport($userAreaCode);
     foreach ($sapData as $eachClient) {
         $childArray = [];
+        $childDailyArray = [];
         $childArray['Client Code'] = $eachClient->CardCode;
+        $childDailyArray['Client Code'] = $eachClient->CardCode;
+        // 
         $childArray['Client Name'] = $eachClient->CardName;
+        $childDailyArray['Client Name'] = $eachClient->CardName;
+        // 
         $childArray['Company'] = $eachClient->COMP;
+        $childDailyArray['Company'] = $eachClient->COMP;
+        // 
         foreach ($keysArray as $dateKey) {
             $status = "-";
+            $dailyStatus = "-";
             $dateState =  MonthPlan::where('user_id', $request->selected_rep)
+                ->where('month', $request->selected_month)
+                ->where('date', $dateKey)
+                ->where('cardCode', $eachClient->CardCode)
+                ->where('company', $eachClient->COMP)
+                ->first();
+
+            $dailyDateState =  DailyProgress::where('user_id', $request->selected_rep)
                 ->where('month', $request->selected_month)
                 ->where('date', $dateKey)
                 ->where('cardCode', $eachClient->CardCode)
@@ -101,11 +120,21 @@ Route::post('/export-data-post', function (Request $request) {
             if ($dateState) {
                 $status = $dateState->state;
             }
+            if ($dailyDateState) {
+                $dailyStatus = $dailyDateState->state;
+            }
             $childArray[$dateKey] = $status;
+            $childDailyArray[$dateKey] = $dailyStatus;
         }
         $motherArray[] = $childArray;
+        $motherDailyArray[] = $childDailyArray;
     }
     $list = collect($motherArray);
+    $listDaily = collect($motherDailyArray);
+    $sheets = new SheetCollection([
+        'Month Plan sheet' => $list,
+        'Daily Record Sheet' => $listDaily,
+    ]);
     $finalFileName  = $request->selected_year . "_" . $userName . "_" . $userAreaCode . "." . "_" . $request->selected_month . ".xlsx";
-    return (new FastExcel($list))->download($finalFileName);
+    return (new FastExcel($sheets))->download($finalFileName);
 })->name('export-post');
